@@ -38,11 +38,6 @@ const routes = [
         name: 'faf',
         component: () => import('./views/faf/index'),
     },
-    {
-        path: '/faf/create',
-        name: 'faf.create',
-        component: () => import('./views/faf/create'),
-    },
     //leagues
     {
         path: '/leagues',
@@ -69,6 +64,27 @@ const routes = [
         path: '/clubs/create',
         name: 'clubs.create',
         component: () => import('./views/clubs/create'),
+    },
+    {
+        path: '/clubs/:id/edit',
+        name: 'clubs.update',
+        component: () => import('./views/clubs/update'),
+    },
+    //roles
+    {
+        path: '/roles',
+        name: 'roles',
+        component: () => import('./views/roles/index'),
+    },
+    {
+        path: '/roles/create',
+        name: 'roles.create',
+        component: () => import('./views/roles/create'),
+    },
+    {
+        path: '/roles/:id/edit',
+        name: 'roles.update',
+        component: () => import('./views/roles/update'),
     },
 ]
 

@@ -42,6 +42,15 @@
                         </v-list-item-content>
                     </v-list-item>
 
+                    <v-list-item to="/roles" class="mb-3">
+                        <v-list-item-icon>
+                            <v-icon color="dark">mdi-lock</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-content>
+                            <v-list-item-title>Roles</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+
                     <v-list-item to="/version" class="mb-3">
                         <v-list-item-icon>
                             <v-icon color="dark">mdi-credit-card-refresh-outline</v-icon>
@@ -113,9 +122,7 @@ export default {
             axios.post('/logout').then(() => {
                 this.$store.dispatch('createUserAuth', '')
                 this.$store.dispatch('isLoggedIn', false)
-                setTimeout(function () {
-                    this.overlay = false
-                }, 5000);
+                this.overlay = false
                 this.$router.push({name: 'login'})
             }).catch(error => {
                 console.log(error)

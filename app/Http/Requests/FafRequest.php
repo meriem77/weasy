@@ -24,10 +24,10 @@ class FafRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name'=>'required|min:3|max:191',
-            'last_name'=>'required|min:3|max:191',
-            'email'=>'required|email|min:3|max:191',
-            'password'=>'required|min:5|max:50',
+            'first_name' => 'required|min:3|max:191',
+            'last_name' => 'required|min:3|max:191',
+            'email' => 'required|email|min:3|max:191',
+            'password' => 'nullable|min:5|max:50',
         ];
     }
 }

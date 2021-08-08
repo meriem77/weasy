@@ -1,13 +1,9 @@
 <template>
     <v-app>
         <navigation v-if="$store.state.isLoggedIn"/>
-        <v-main>
-            <v-container fluid>
-                <error/>
-                <success/>
-                <router-view/>
-            </v-container>
-        </v-main>
+        <error/>
+        <success/>
+        <router-view/>
         <app-footer v-if="$store.state.isLoggedIn"/>
     </v-app>
 </template>

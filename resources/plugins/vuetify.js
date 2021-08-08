@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
-import '@mdi/font/css/materialdesignicons.css'
 
 Vue.use(Vuetify)
 
@@ -10,7 +8,6 @@ const opts = {
         themes: {
             light: {
                 primary: '#007CC7',
-                // primary: '#26A69A',
                 secondary: '#23233c',
             },
             dark: {

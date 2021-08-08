@@ -24,7 +24,7 @@ class VersionRequest extends FormRequest
     public function rules()
     {
         return [
-            'version'=>'requierd'
+            'version' => 'required'
         ];
     }
 }

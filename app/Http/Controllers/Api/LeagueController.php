@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LeagueRequest;
 use App\Http\Traits\UploadTrait;
 use App\Models\League;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 
 class LeagueController extends Controller
@@ -23,7 +21,7 @@ class LeagueController extends Controller
     public function store(LeagueRequest $request)
     {
         if ($request->hasFile('logo')) {
-            $imageName = $this->image($request->file('logo'));
+            $imageName = $this->image($request->file('logo'), 'leagues', '');
         }
         $league = new League();
         $league->name = $request->name;
@@ -40,12 +38,12 @@ class LeagueController extends Controller
 
     public function update(LeagueRequest $request, $id)
     {
-        if ($request->hasFile('logo')) {
-            $imageName = $this->image($request->file('logo'));
-        }
         $league = League::find($id);
+        if ($request->hasFile('logo')) {
+            $imageName = $this->image($request->file('logo'), 'leagues', $league->logo);
+            $league->logo = $imageName;
+        }
         $league->name = $request->name;
-        $league->logo = $request->hasFile('logo') ? $imageName : $league->logo;
         $league->save();
         return true;
     }

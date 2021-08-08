@@ -6,8 +6,6 @@ import store from './store/auth'
 import './globalVariables'
 
 window.axios = require('axios')
-axios.defaults.withCredentials = true;
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 axios.defaults.baseURL = '/api/';
 axios.defaults.headers.common = {
     'Content-Type': "application/json",

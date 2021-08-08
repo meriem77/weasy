@@ -6,11 +6,18 @@ namespace App\Http\Traits;
 trait UploadTrait
 {
 
-    public function image($data): string
+    public function image($data, $folderName, $fileName)
     {
-        $path = env('APP_URL') . '/uploads/logo/';
-        $imageName = $path . time() . '.' . $data->getClientOriginalName();
-        $data->move(public_path('uploads/logo'), $imageName);
+        //Check if method update and path exist
+        if ($fileName) {
+            $parts = explode("/", $fileName);
+            $existPath = 'uploads/' . $folderName . '/' . end($parts);
+            if (\File::exists($existPath)) \File::delete($existPath);
+        }
+        //Store in public folder
+        $path = env('APP_URL') . '/uploads/' . $folderName . '/';
+        $imageName = $path . time() . '.' . $data->getClientOriginalExtension();
+        $data->move(public_path('uploads/' . $folderName), $imageName);
         return $imageName;
     }
 }

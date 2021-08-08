@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function login(Request $request): \Illuminate\Http\JsonResponse
+    public function login(Request $request)
     {
         $user = Admin::where('email', $request->email)->first();
         if (!$user || !Hash::check($request->password, $user->password)) {
@@ -26,7 +26,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout(Request $request): bool
+    public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
         return true;

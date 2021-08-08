@@ -24,9 +24,9 @@ class ClubRequest extends FormRequest
     public function rules()
     {
         return [
-            'league_id' => 'required|min:3|max:191|exists:leagues,id',
+            'league_id' => 'required|exists:leagues,id',
             'name' => 'required|min:3|max:191|unique:clubs,name,' . $this->club,
-            'slogan' => 'required|min:3|max:191|unique:clubs,slogan,' . $this->club,
+            'slogan' => 'required|min:2|max:191|unique:clubs,slogan,' . $this->club,
             'logo' => $this->club ? 'nullable|image' : 'required|image',
         ];
     }
