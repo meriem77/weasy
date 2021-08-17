@@ -4,47 +4,32 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LeagueRequest;
-use App\Http\Traits\UploadTrait;
 use App\Models\League;
 
 
 class LeagueController extends Controller
 {
-    use  UploadTrait;
 
     public function index()
     {
-        $leagues = League::latest()->get();
+        $leagues = League::orderBy('id')->get();
         return response()->json($leagues);
     }
 
     public function store(LeagueRequest $request)
     {
-        if ($request->hasFile('logo')) {
-            $imageName = $this->image($request->file('logo'), 'leagues', '');
-        }
-        $league = new League();
-        $league->name = $request->name;
-        $league->logo = $imageName;
-        $league->save();
+        League::create($request->validated());
         return true;
     }
 
-    public function edit($id)
+    public function edit(League $league)
     {
-        $league = League::findOrFail($id);
         return response()->json($league);
     }
 
-    public function update(LeagueRequest $request, $id)
+    public function update(LeagueRequest $request, League $league)
     {
-        $league = League::find($id);
-        if ($request->hasFile('logo')) {
-            $imageName = $this->image($request->file('logo'), 'leagues', $league->logo);
-            $league->logo = $imageName;
-        }
-        $league->name = $request->name;
-        $league->save();
+        $league->update($request->validated());
         return true;
     }
 }

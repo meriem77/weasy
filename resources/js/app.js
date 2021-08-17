@@ -2,30 +2,31 @@ import Vue from 'vue'
 import vuetify from "../plugins/vuetify"
 import Main from "./Main"
 import router from "./routes"
-import store from './store/auth'
+import store from './store/index'
 import './globalVariables'
+import getAppVersion from "./getAppVersion";
 
+getAppVersion();
 window.axios = require('axios')
 axios.defaults.baseURL = '/api/';
+window.axios.defaults.withCredentials = true;
 axios.defaults.headers.common = {
     'Content-Type': "application/json",
     'Accept': "application/json",
-    'Authorization': `Bearer ` + store.state.user.token
+    'X-Requested-With': "XMLHttpRequest",
 }
-router.beforeEach((to, from, next) => {
-    const publicPages = ['/login'];
-    const authRequired = !publicPages.includes(to.path);
-    const loggedIn = store.state.isLoggedIn;
-    if (authRequired && !loggedIn) {
-        next('/login');
-    } else if (!authRequired && loggedIn) {
-        next('/home');
-    } else {
-        next()
+axios.interceptors.response.use(function (response) {
+    return response
+}, async function (error) {
+    if (error.response.status === 401) {
+        await store.dispatch('createUserAuth', '')
+        await store.dispatch('isLoggedIn', false)
+        await router.push({name: 'login'})
     }
-});
+    return Promise.reject(error)
+})
 
-const app = new Vue({
+new Vue({
     el: '#app',
     router,
     vuetify,

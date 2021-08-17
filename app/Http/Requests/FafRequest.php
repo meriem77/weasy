@@ -28,6 +28,7 @@ class FafRequest extends FormRequest
             'last_name' => 'required|min:3|max:191',
             'email' => 'required|email|min:3|max:191',
             'password' => 'nullable|min:5|max:50',
+            'avatar' => 'nullable|image',
         ];
     }
 }

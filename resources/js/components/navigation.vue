@@ -3,7 +3,6 @@
         <v-navigation-drawer floating="floating" v-model="drawer"
                              :clipped="$vuetify.breakpoint.lgAndUp" app>
             <v-list dense nav shaped>
-
                 <v-list-item-group color="primary">
 
                     <v-list-item to="/home" class="mb-3">
@@ -79,14 +78,28 @@
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <span class="hidden-sm-and-down">
-          Dashboard
+          {{ APP_NAME }}
         </span>
             </v-toolbar-title>
-            <v-text-field flat solo-inverted hide-details prepend-inner-icon="mdi-magnify"
-                          class="hidden-sm-and-down" label="Recherche..." placeholder="Recherche..."
-            ></v-text-field>
+            <v-autocomplete
+                @change="goToClubsPage"
+                flat solo-inverted hide-details :prepend-inner-icon="loading ? 'mdi-loading mdi-spin' :'mdi-magnify'"
+                class="hidden-sm-and-down search" label="Chercher un club..." placeholder="Recherche..." v-model="query"
+                @keyup="serach($event)" solo :items="clubs" item-text="name" item-value="id">
+                <template v-slot:item="data">
+                    <v-list dense>
+                        <v-list-item>
+                            <v-list-item-avatar size="30px">
+                                <v-img :src="data.item.logo"></v-img>
+                            </v-list-item-avatar>
+                            <v-list-item-content>
+                                <v-list-item-title v-text="data.item.name"></v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list>
+                </template>
+            </v-autocomplete>
             <v-spacer></v-spacer>
-
             <v-btn icon dark @click="theme">
                 <v-icon>{{ $vuetify.theme.dark ? 'mdi-brightness-4' : 'mdi-brightness-7' }}</v-icon>
             </v-btn>
@@ -111,6 +124,10 @@ export default {
         return {
             drawer: null,
             overlay: false,
+            query: '',
+            clubs: [],
+            loading: false,
+            APP_NAME: process.env.MIX_APP_NAME,
         }
     },
     methods: {
@@ -124,13 +141,27 @@ export default {
                 this.$store.dispatch('isLoggedIn', false)
                 this.overlay = false
                 this.$router.push({name: 'login'})
+            }).catch(err => {
+                this.overlay = false
+                console.log(err)
+            })
+        },
+        serach(e) {
+            this.query += e.key
+            this.loading = true
+            axios.post('/search-clubs', {
+                search: this.query
+            }).then(response => {
+                this.clubs = response.data
+                this.loading = false
             }).catch(error => {
                 console.log(error)
-                this.overlay = false
+                this.loading = false
             })
+        },
+        goToClubsPage() {
+            this.$router.push('/clubs?club_id=' + this.query)
         }
     }
 }
 </script>
-
-

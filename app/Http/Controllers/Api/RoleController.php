@@ -14,33 +14,26 @@ class RoleController extends Controller
         return response()->json($roles);
     }
 
-    public function edit($id)
+    public function edit(Role $role)
     {
-        $role = Role::findOrFail($id);
         return response()->json($role);
     }
 
     public function store(RoleRequest $request)
     {
-        $role = new Role();
-        $role->name = $request->name;
-        $role->description = $request->description;
-        $role->save();
+        Role::create($request->validated());
         return true;
     }
 
-    public function update(RoleRequest $request, $id)
+    public function update(RoleRequest $request, Role $role)
     {
-        $role = Role::find($id);
-        $role->name = $request->name;
-        $role->description = $request->description;
-        $role->save();
+        $role->update($request->validated());
         return true;
     }
 
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        Role::find($id)->delete();
+        $role->delete();
         return true;
     }
 }

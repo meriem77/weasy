@@ -23,11 +23,12 @@ class ClubRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->club ? $this->club['id'] : null;
         return [
             'league_id' => 'required|exists:leagues,id',
-            'name' => 'required|min:3|max:191|unique:clubs,name,' . $this->club,
-            'slogan' => 'required|min:2|max:191|unique:clubs,slogan,' . $this->club,
-            'logo' => $this->club ? 'nullable|image' : 'required|image',
+            'name' => 'required|min:3|max:191|unique:clubs,name,' . $id,
+            'slogan' => 'required|min:2|max:191|unique:clubs,slogan,' . $id,
+            'logo' => $id ? 'nullable|image' : 'required|image',
         ];
     }
 }

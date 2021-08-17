@@ -41,7 +41,7 @@
                                 <h1 class="mt-5">{{ faf.first_name }}
                                     <span style="color: #3e96e3">{{ faf.last_name }}</span></h1>
                                 <h3 class='mt-3 mb-4'>{{ faf.email }}</h3>
-                                <v-btn color="primary darken-3" class="text-none mb-3"
+                                <v-btn color="primary" class="text-none mb-3"
                                        :loading="btnUploadLoading"
                                        fab depressed
                                        @click="onButtonClickUpload">
@@ -163,7 +163,14 @@ export default {
         updateFafAccount() {
             this.validateErrMessages = ''
             this.btnLoading = true
-            axios.post('/faf/update', this.form).then(() => {
+            const data = {
+                id: this.form.id,
+                first_name: this.form.first_name,
+                last_name: this.form.last_name,
+                email: this.form.email,
+                password: this.form.password,
+            }
+            axios.post('/faf/update', data).then(() => {
                 this.$error = false
                 this.btnLoading = false
                 this.$success = true

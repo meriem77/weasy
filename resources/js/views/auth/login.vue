@@ -7,7 +7,7 @@
                         <v-alert v-if="errors" prominent type="error" class="my-3">
                             <v-row align="center">
                                 <v-col class="grow">
-                                    {{ errors }}
+                                    {{ errors.email[0] }}
                                 </v-col>
                             </v-row>
                         </v-alert>
@@ -51,7 +51,8 @@
                                                         2021 - Tous droits réservés. </h4>
                                                 </v-col>
                                                 <v-col cols="12" lg="6" md="6">
-                                                    <h4 class="text-lg-right text-md-right text-center">V 0.0.1</h4>
+                                                    <h4 class="text-lg-right text-md-right text-center">V
+                                                        {{ $store.state.version }}</h4>
                                                 </v-col>
                                             </v-row>
                                         </div>
@@ -75,26 +76,27 @@ export default {
         }
     },
     methods: {
-        async login() {
+        login() {
             this.loading = true
-            this.errors = ''
-            axios.post('/login', this.form).then((response) => {
-                this.loading = false
-                if (response.data.user) {
-                    axios.defaults.headers.common = {
-                        'Authorization': `Bearer ` + response.data.user.token,
-                        'Content-Type': "application/json",
-                        'Accept': "application/json",
-                    }
-                    this.$store.dispatch('createUserAuth', response.data.user)
-                    this.$store.dispatch('isLoggedIn', true)
-                    this.$router.push({name: 'home'})
-                }
-            }).catch(error => {
-                this.loading = false
-                this.errors = error.response.data.message
-            })
-        }
+            axios.get('/sanctum/csrf-cookie').then(() => {
+                axios.post('/login', this.form).then(() => {
+                    this.getUserAuth()
+                }).catch(error => {
+                    this.errors = error.response.data.errors;
+                    this.loading = false
+                })
+            });
+        },
+        async getUserAuth() {
+            try {
+                let user = await axios.get('user')
+                await this.$store.dispatch('createUserAuth', user.data)
+                await this.$store.dispatch('isLoggedIn', true)
+                await this.$router.push({name: 'home'})
+            } catch (e) {
+                console.log(e)
+            }
+        },
     }
 }
 </script>

@@ -9,6 +9,7 @@ const store = new Vuex.Store({
     state: {
         user: '',
         isLoggedIn: '',
+        version: '',
     },
     mutations: {
         STORE_USER_AUTH: (state, userData) => {
@@ -16,6 +17,9 @@ const store = new Vuex.Store({
         },
         IS_LOGGED_IN: (state, boolean) => {
             state.isLoggedIn = boolean
+        },
+        VERSION: (state, val) => {
+            state.version = val
         },
     },
     actions: {
@@ -25,6 +29,9 @@ const store = new Vuex.Store({
         isLoggedIn({commit}, boolean) {
             commit("IS_LOGGED_IN", boolean);
         },
-    }
+        version({commit}, val) {
+            commit("VERSION", val);
+        },
+    },
 })
 export default store

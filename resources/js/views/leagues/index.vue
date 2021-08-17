@@ -25,9 +25,9 @@
                     </v-col>
                 </v-row>
                 <v-row v-if="!dataLoading && leagues.length>0">
-                    <v-col v-for="league in leagues" :key="league.id" md="4" cols="6" lg="3" eager>
-                        <v-card ripple class="text-center">
-                            <v-img :src="league.logo" aspect-ratio="1">
+                    <v-col v-for="league in leagues" :key="league.id" md="3" cols="6" lg="2">
+                        <v-card ripple class="text-center" height="100%">
+                            <v-img :src="league.logo" size="100" class="my-3" aspect-ratio="1">
                                 <template v-slot:placeholder>
                                     <v-row class="fill-height ma-0" align="center" justify="center">
                                         <v-progress-circular
@@ -38,7 +38,7 @@
                                 </template>
                             </v-img>
                             <v-card-text>
-                                <h3 class="text--primary">{{ league.name }}</h3>
+                                <h4 class="text--primary mt-3">{{ league.name }}</h4>
                             </v-card-text>
                             <v-card-actions>
                                 <v-btn icon large :to="'/leagues/'+league.id+'/edit'">

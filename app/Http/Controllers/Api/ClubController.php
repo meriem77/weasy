@@ -4,53 +4,46 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClubRequest;
-use App\Http\Traits\UploadTrait;
 use App\Models\Club;
+use Illuminate\Http\Request;
+
 
 class ClubController extends Controller
 {
-    use  UploadTrait;
 
     public function index()
     {
+        $club_id = request()->get('club_id');
         $clubs = Club::with('league:id,name')
-            ->orderBy('name')
-            ->where('league_id', request()->get('league_id'))
-            ->get();
-        return response()->json($clubs);
+            ->orderBy('name')->where('league_id', request()->get('league_id'));
+        if ($club_id) {
+            $clubs->where('id', $club_id);
+        }
+        return response()->json($clubs->get());
     }
 
-    public function store(ClubRequest $request): bool
+    public function store(ClubRequest $request)
     {
-        if ($request->hasFile('logo')) {
-            $imageName = $this->image($request->file('logo'), 'clubs', '');
-        }
-        $club = new Club();
-        $club->league_id = $request->league_id;
-        $club->name = $request->name;
-        $club->slogan = $request->slogan;
-        $club->logo = $imageName;
-        $club->save();
+        Club::create($request->validated());
         return true;
     }
 
-    public function edit($id)
+    public function edit(Club $club)
     {
-        $club = Club::findOrFail($id);
         return response()->json($club);
     }
 
-    public function update(ClubRequest $request, $id)
+    public function update(ClubRequest $request, Club $club)
     {
-        $club = Club::find($id);
-        $club->league_id = $request->league_id;
-        $club->name = $request->name;
-        $club->slogan = $request->slogan;
-        if ($request->hasFile('logo')) {
-            $imageName = $this->image($request->file('logo'), 'clubs', $league->logo);
-            $club->logo = $imageName;
-        }
-        $club->save();
+        $club->update($request->validated());
         return true;
+    }
+
+    public function search(Request $request)
+    {
+        $clubs = Club::orderBy('name')
+            ->where('name', 'like', '%' . $request->name . '%')
+            ->get();
+        return response()->json($clubs);
     }
 }

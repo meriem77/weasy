@@ -10,23 +10,53 @@
                     </v-breadcrumbs>
                 </v-card>
                 <v-row>
-                    <v-col lg="2" md="2" cols="12">
+                    <v-col lg="2" md="2" cols="12" class="d-flex">
                         <v-btn color="primary" to="/clubs/create">
                             <v-icon left>mdi-plus</v-icon>
                             Ajouter
                         </v-btn>
+                        <v-btn v-if="this.$route.query.club_id" text class="ml-2" style="margin-top: 1px" color="red"
+                               @click="[$router.replace('/clubs'),getClubs()]">
+                            <v-icon left>mdi-filter-remove-outline</v-icon>
+                            Reset
+                        </v-btn>
                     </v-col>
-                    <v-col lg="4" md="4" cols="12" class="d-lg-block d-md-block d-none">&nbsp;</v-col>
-                    <v-col lg="2" md="2" cols="4">
-                        <v-select dense solo placeholder="Ligue..."
-                                  :loading="loadingLeague"
-                                  :items="leagues"
-                                  v-model='league_id'
-                                  item-value="id"
-                                  @change="getClubs"
-                                  style="margin-bottom: -30px"
-                                  item-text="name">
-                        </v-select>
+                    <v-col lg="2" md="2" cols="12" class="d-lg-block d-md-block d-none">&nbsp;</v-col>
+                    <v-col lg="4" md="4" cols="4">
+                        <v-autocomplete
+                            @change="getClubs" solo
+                            v-model="league_id" dense :items="leagues"
+                            placeholder="Ligue..." item-text="name" item-value="id"
+                            style="margin-bottom: -30px">
+                            <template v-slot:selection="data">
+                                <v-avatar left tile class="mr-3" size="9%">
+                                    <v-img :src="data.item.logo"></v-img>
+                                </v-avatar>
+                                {{ data.item.name }}
+                            </template>
+                            <template v-slot:item="data">
+                                <template>
+                                    <v-list-item-avatar tile>
+                                        <v-img :src="data.item.logo" aspect-ratio="1">
+                                            <template v-slot:placeholder>
+                                                <v-row class="fill-height ma-0" align="center"
+                                                       justify="center">
+                                                    <v-progress-circular
+                                                        indeterminate
+                                                        size="20"
+                                                        color="primary"
+                                                    ></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
+                                    </v-list-item-avatar>
+                                    <v-list-item-content>
+                                        <v-list-item-title
+                                            v-html="data.item.name"></v-list-item-title>
+                                    </v-list-item-content>
+                                </template>
+                            </template>
+                        </v-autocomplete>
                     </v-col>
                     <v-col lg="4" md="4" cols="8">
                         <v-text-field dense solo prepend-inner-icon="mdi-magnify" v-model="query"
@@ -101,9 +131,8 @@ export default {
     data() {
         return {
             query: '',
-            league_id: 3,
+            league_id: 1,
             dataLoading: false,
-            loadingLeague: false,
             clubs: [],
             leagues: [],
             breadcrumbs: [
@@ -121,16 +150,13 @@ export default {
     },
     methods: {
         getLeagues() {
-            this.loadingLeague = true
             this.dataLoading = true
             axios.get('/leagues').then(response => {
-                this.loadingLeague = false
                 this.leagues = response.data
                 this.dataLoading = false
                 this.getClubs()
             }).catch(error => {
                 console.log(error)
-                this.loadingLeague = true
                 this.dataLoading = false
             })
         },
@@ -138,7 +164,8 @@ export default {
             this.dataLoading = true
             axios.get('/clubs', {
                 params: {
-                    league_id: this.league_id
+                    league_id: this.league_id,
+                    club_id: this.$route.query.club_id,
                 }
             }).then(response => {
                 this.clubs = response.data

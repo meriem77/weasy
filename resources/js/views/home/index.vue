@@ -63,8 +63,8 @@
                 <v-row class="mt-6">
                     <v-col lg="12" cols="12" md="12">
                         <div class="text-center">
-                            <v-avatar tile size="350">
-                                <v-img src="assets/images/dashboard.png" aspect-ratio="1">
+                            <v-avatar tile size="450">
+                                <v-img src="assets/images/version.png" aspect-ratio="1">
                                     <template v-slot:placeholder>
                                         <v-row class="fill-height ma-0" align="center" justify="center">
                                             <v-progress-circular

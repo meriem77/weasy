@@ -23,9 +23,10 @@ class LeagueRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->league ? $this->league['id'] : null;
         return [
-            'name' => 'required|min:3|max:191|unique:leagues,name,' . $this->league,
-            'logo' => $this->league ? 'nullable|image' : 'required|image',
+            'name' => 'required|min:3|max:191|unique:leagues,name,' . $id,
+            'logo' => $id ? 'nullable|image' : 'required|image',
         ];
     }
 }

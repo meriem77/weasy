@@ -84,6 +84,8 @@
 </template>
 
 <script>
+import store from "../../store";
+
 export default {
     data() {
         return {
@@ -129,6 +131,7 @@ export default {
                 this.btnLoading = false
                 this.$error = false
                 this.$success = true
+                this.$store.dispatch("version", this.form.version);
                 this.getVersion()
             }).catch(error => {
                 this.$error = true
