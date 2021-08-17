@@ -66,6 +66,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -76,8 +86,41 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         text: 'Mon compte',
         disabled: true
-      }]
+      }],
+      form: {
+        email: this.$store.state.user.email,
+        current_password: '',
+        new_password: '',
+        new_confirm_password: ''
+      },
+      validateErrMessages: '',
+      btnLoading: false
     };
+  },
+  methods: {
+    update: function update() {
+      var _this = this;
+
+      this.validateErrMessages = '';
+      this.btnLoading = true;
+      axios.post('/account', this.form).then(function (res) {
+        _this.btnLoading = false;
+        _this.$success = true;
+        _this.$error = false;
+
+        _this.clearForm();
+      })["catch"](function (err) {
+        _this.validateErrMessages = err.response.data.errors;
+        _this.btnLoading = false;
+        _this.$success = false;
+        _this.$error = true;
+      });
+    },
+    clearForm: function clearForm() {
+      this.form.current_password = '';
+      this.form.new_password = '';
+      this.form.new_confirm_password = '';
+    }
   }
 });
 
@@ -200,153 +243,219 @@ var render = function() {
               _c(
                 "v-row",
                 [
-                  _c(
-                    "v-col",
-                    { attrs: { lg: "8", sm: "12" } },
-                    [
-                      _c(
-                        "v-card",
-                        [
-                          _c(
-                            "v-card-text",
-                            [
-                              _c(
-                                "v-row",
-                                [
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: { lg: "6", sm: "12", cols: "12" }
-                                    },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          dense: "",
-                                          clearable: "",
-                                          label: "Email *"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          dense: "",
-                                          clearable: "",
-                                          label: "Ancien mot de passe *"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          dense: "",
-                                          clearable: "",
-                                          label: "Nouveau mot de passe *"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          dense: "",
-                                          clearable: "",
-                                          label: "Confirmer le mot de passe *"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-btn",
-                                        { attrs: { color: "primary" } },
-                                        [
-                                          _c(
-                                            "v-icon",
-                                            { attrs: { left: "" } },
-                                            [_vm._v("mdi-content-save")]
-                                          ),
-                                          _vm._v(
-                                            "\n                                        Enrigistrer\n                                    "
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      staticClass: "text-right",
-                                      attrs: { lg: "6", sm: "12", cols: "12" }
-                                    },
-                                    [
-                                      _c(
-                                        "v-avatar",
-                                        {
-                                          staticStyle: {
-                                            "margin-top": "-30px"
+                  _c("v-col", { attrs: { lg: "8", sm: "12" } }, [
+                    _c(
+                      "form",
+                      {
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.update.apply(null, arguments)
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "v-card",
+                          [
+                            _c(
+                              "v-card-text",
+                              [
+                                _c(
+                                  "v-row",
+                                  [
+                                    _c(
+                                      "v-col",
+                                      {
+                                        attrs: { lg: "6", sm: "12", cols: "12" }
+                                      },
+                                      [
+                                        _c("v-text-field", {
+                                          attrs: {
+                                            "error-messages":
+                                              _vm.validateErrMessages.email,
+                                            outlined: "",
+                                            dense: "",
+                                            label: "Email *"
                                           },
-                                          attrs: { tile: "", size: "300" }
-                                        },
-                                        [
-                                          _c("v-img", {
-                                            attrs: {
-                                              src: "assets/images/profile.png",
-                                              "aspect-ratio": "1"
+                                          model: {
+                                            value: _vm.form.email,
+                                            callback: function($$v) {
+                                              _vm.$set(_vm.form, "email", $$v)
                                             },
-                                            scopedSlots: _vm._u([
-                                              {
-                                                key: "placeholder",
-                                                fn: function() {
-                                                  return [
-                                                    _c(
-                                                      "v-row",
-                                                      {
-                                                        staticClass:
-                                                          "fill-height ma-0",
-                                                        attrs: {
-                                                          align: "center",
-                                                          justify: "center"
-                                                        }
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "v-progress-circular",
-                                                          {
-                                                            attrs: {
-                                                              indeterminate: "",
-                                                              color: "primary"
-                                                            }
+                                            expression: "form.email"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("v-text-field", {
+                                          attrs: {
+                                            "error-messages":
+                                              _vm.validateErrMessages
+                                                .current_password,
+                                            outlined: "",
+                                            dense: "",
+                                            label: "Ancien mot de passe *"
+                                          },
+                                          model: {
+                                            value: _vm.form.current_password,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.form,
+                                                "current_password",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "form.current_password"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("v-text-field", {
+                                          attrs: {
+                                            "error-messages":
+                                              _vm.validateErrMessages
+                                                .new_password,
+                                            outlined: "",
+                                            dense: "",
+                                            label: "Nouveau mot de passe *"
+                                          },
+                                          model: {
+                                            value: _vm.form.new_password,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.form,
+                                                "new_password",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "form.new_password"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("v-text-field", {
+                                          attrs: {
+                                            "error-messages":
+                                              _vm.validateErrMessages
+                                                .new_confirm_password,
+                                            outlined: "",
+                                            dense: "",
+                                            label: "Confirmer le mot de passe *"
+                                          },
+                                          model: {
+                                            value:
+                                              _vm.form.new_confirm_password,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.form,
+                                                "new_confirm_password",
+                                                $$v
+                                              )
+                                            },
+                                            expression:
+                                              "form.new_confirm_password"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              color: "primary",
+                                              type: "submit",
+                                              loading: _vm.btnLoading
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "v-icon",
+                                              { attrs: { left: "" } },
+                                              [_vm._v("mdi-content-save")]
+                                            ),
+                                            _vm._v(
+                                              "\n                                            Enrigistrer\n                                        "
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-col",
+                                      {
+                                        staticClass: "text-right",
+                                        attrs: { lg: "6", sm: "12", cols: "12" }
+                                      },
+                                      [
+                                        _c(
+                                          "v-avatar",
+                                          {
+                                            staticStyle: {
+                                              "margin-top": "-30px"
+                                            },
+                                            attrs: { tile: "", size: "300" }
+                                          },
+                                          [
+                                            _c("v-img", {
+                                              attrs: {
+                                                src:
+                                                  "assets/images/profile.png",
+                                                "aspect-ratio": "1"
+                                              },
+                                              scopedSlots: _vm._u([
+                                                {
+                                                  key: "placeholder",
+                                                  fn: function() {
+                                                    return [
+                                                      _c(
+                                                        "v-row",
+                                                        {
+                                                          staticClass:
+                                                            "fill-height ma-0",
+                                                          attrs: {
+                                                            align: "center",
+                                                            justify: "center"
                                                           }
-                                                        )
-                                                      ],
-                                                      1
-                                                    )
-                                                  ]
-                                                },
-                                                proxy: true
-                                              }
-                                            ])
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "v-progress-circular",
+                                                            {
+                                                              attrs: {
+                                                                indeterminate:
+                                                                  "",
+                                                                color: "primary"
+                                                              }
+                                                            }
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ]
+                                                  },
+                                                  proxy: true
+                                                }
+                                              ])
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ])
                 ],
                 1
               )

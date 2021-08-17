@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ClubController;
 use App\Http\Controllers\Api\VersionController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\FafController;
+use App\Http\Controllers\Api\AccountController;
 use \Illuminate\Support\Facades\Auth;
 use \Illuminate\Http\Request;
 
@@ -32,4 +33,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('roles', RoleController::class)->except('create');
     //Version
     Route::post('version/update', [VersionController::class, 'update']);
+    //Account
+    Route::post('account', [AccountController::class, 'update']);
 });
