@@ -83,10 +83,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -332,7 +328,7 @@ var render = function() {
                                                 _c("v-img", {
                                                   attrs: {
                                                     src:
-                                                      "assets/images/login.png",
+                                                      "assets/images/login.webp",
                                                     width: "60%",
                                                     "aspect-ratio": "1"
                                                   },
@@ -494,35 +490,6 @@ var render = function() {
                                                     ),
                                                     _vm._v(
                                                       "\n                                                    2021 - Tous droits réservés. "
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  lg: "6",
-                                                  md: "6"
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "h4",
-                                                  {
-                                                    staticClass:
-                                                      "text-lg-right text-md-right text-center"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "V\n                                                    " +
-                                                        _vm._s(
-                                                          _vm.$store.state
-                                                            .version
-                                                        )
                                                     )
                                                   ]
                                                 )

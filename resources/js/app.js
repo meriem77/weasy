@@ -4,9 +4,7 @@ import Main from "./Main"
 import router from "./routes"
 import store from './store/index'
 import './globalVariables'
-import getAppVersion from "./getAppVersion";
 
-getAppVersion();
 window.axios = require('axios')
 axios.defaults.baseURL = '/api/';
 window.axios.defaults.withCredentials = true;

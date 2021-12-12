@@ -207,13 +207,13 @@ var render = function() {
                     [
                       _c(
                         "v-card",
-                        { attrs: { to: "/leagues" } },
+                        { attrs: { to: "/home" } },
                         [
                           _c(
                             "v-card-title",
                             [
                               _c("span", { staticClass: "text--secondary" }, [
-                                _vm._v("Ligues")
+                                _vm._v("Test")
                               ]),
                               _vm._v(" "),
                               _c("v-spacer"),
@@ -258,13 +258,13 @@ var render = function() {
                     [
                       _c(
                         "v-card",
-                        { attrs: { to: "/leagues" } },
+                        { attrs: { to: "/home" } },
                         [
                           _c(
                             "v-card-title",
                             [
                               _c("span", { staticClass: "text--secondary" }, [
-                                _vm._v("Ligues")
+                                _vm._v("Test")
                               ]),
                               _vm._v(" "),
                               _c("v-spacer"),
@@ -309,13 +309,13 @@ var render = function() {
                     [
                       _c(
                         "v-card",
-                        { attrs: { to: "/leagues" } },
+                        { attrs: { to: "/home" } },
                         [
                           _c(
                             "v-card-title",
                             [
                               _c("span", { staticClass: "text--secondary" }, [
-                                _vm._v("Clubs")
+                                _vm._v("Test")
                               ]),
                               _vm._v(" "),
                               _c("v-spacer"),
@@ -360,13 +360,13 @@ var render = function() {
                     [
                       _c(
                         "v-card",
-                        { attrs: { to: "/leagues" } },
+                        { attrs: { to: "/home" } },
                         [
                           _c(
                             "v-card-title",
                             [
                               _c("span", { staticClass: "text--secondary" }, [
-                                _vm._v("Clubs")
+                                _vm._v("Test")
                               ]),
                               _vm._v(" "),
                               _c("v-spacer"),
@@ -423,7 +423,7 @@ var render = function() {
                           [
                             _c("v-img", {
                               attrs: {
-                                src: "assets/images/version.png",
+                                src: "assets/images/version.webp",
                                 "aspect-ratio": "1"
                               },
                               scopedSlots: _vm._u([

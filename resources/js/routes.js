@@ -22,15 +22,6 @@ const routes = [
             title: 'Page non trouvée!'
         }
     },
-    //version
-    {
-        path: '/version',
-        name: 'version',
-        component: () => import('./views/version/index'),
-        meta: {
-            title: 'Version'
-        }
-    },
     //home
     {
         path: '/home',
@@ -48,70 +39,11 @@ const routes = [
             title: 'Mon compte'
         }
     },
-    //faf
-    {
-        path: '/faf',
-        name: 'faf',
-        component: () => import('./views/faf/index'),
-        meta: {
-            title: 'Faf'
-        }
-    },
-    //leagues
-    {
-        path: '/leagues',
-        name: 'leagues',
-        component: () => import('./views/leagues/index'),
-        meta: {
-            title: 'Ligues'
-        }
-    },
-    {
-        path: '/leagues/create',
-        name: 'leagues.create',
-        component: () => import('./views/leagues/create'),
-        meta: {
-            title: 'Ajouter une ligue'
-        }
-    },
-    {
-        path: '/leagues/:id/edit',
-        name: 'leagues.update',
-        component: () => import('./views/leagues/update'),
-        meta: {
-            title: 'Modifier une ligue'
-        }
-    },
-    //clubs
-    {
-        path: '/clubs',
-        name: 'clubs',
-        component: () => import('./views/clubs/index'),
-        meta: {
-            title: 'Clubs'
-        }
-    },
-    {
-        path: '/clubs/create',
-        name: 'clubs.create',
-        component: () => import('./views/clubs/create'),
-        meta: {
-            title: 'Ajouter un club'
-        }
-    },
-    {
-        path: '/clubs/:id/edit',
-        name: 'clubs.update',
-        component: () => import('./views/clubs/update'),
-        meta: {
-            title: 'Modidier un club'
-        }
-    },
     //roles
     {
         path: '/roles',
         name: 'roles',
-        component: () => import('./views/roles/index'),
+        component: () => import('./views/pages/index'),
         meta: {
             title: 'Roles'
         }
@@ -119,7 +51,7 @@ const routes = [
     {
         path: '/roles/create',
         name: 'roles.create',
-        component: () => import('./views/roles/create'),
+        component: () => import('./views/pages/create'),
         meta: {
             title: 'Ajouter un role'
         }
@@ -127,7 +59,7 @@ const routes = [
     {
         path: '/roles/:id/edit',
         name: 'roles.update',
-        component: () => import('./views/roles/update'),
+        component: () => import('./views/pages/update'),
         meta: {
             title: 'Modifier un role'
         }

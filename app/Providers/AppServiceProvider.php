@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,9 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app->bind('path.public', function () {
-        //      return realpath(base_path() . '/../public_html');
-        //  });
+
     }
 
     /**
@@ -26,5 +25,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         date_default_timezone_set('Africa/Algiers');
+        Schema::defaultStringLength(191);
     }
 }

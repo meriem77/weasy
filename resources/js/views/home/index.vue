@@ -4,9 +4,9 @@
             <v-container fluid>
                 <v-row>
                     <v-col cols="12" md="3" lg="3">
-                        <v-card to="/leagues">
+                        <v-card to="/home">
                             <v-card-title>
-                                <span class="text--secondary">Ligues</span>
+                                <span class="text--secondary">Test</span>
                                 <v-spacer></v-spacer>
                                 <v-avatar color="primary" width="66" height="66">
                                     <v-icon color="white" large>mdi-soccer</v-icon>
@@ -18,9 +18,9 @@
                         </v-card>
                     </v-col>
                     <v-col cols="12" md="3" lg="3">
-                        <v-card to="/leagues">
+                        <v-card to="/home">
                             <v-card-title>
-                                <span class="text--secondary">Ligues</span>
+                                <span class="text--secondary">Test</span>
                                 <v-spacer></v-spacer>
                                 <v-avatar color="primary" width="66" height="66">
                                     <v-icon color="white" large>mdi-soccer</v-icon>
@@ -32,9 +32,9 @@
                         </v-card>
                     </v-col>
                     <v-col cols="12" md="3" lg="3">
-                        <v-card to="/leagues">
+                        <v-card to="/home">
                             <v-card-title>
-                                <span class="text--secondary">Clubs</span>
+                                <span class="text--secondary">Test</span>
                                 <v-spacer></v-spacer>
                                 <v-avatar color="primary" width="66" height="66">
                                     <v-icon color="white" large>mdi-message-text-outline</v-icon>
@@ -46,9 +46,9 @@
                         </v-card>
                     </v-col>
                     <v-col cols="12" md="3" lg="3">
-                        <v-card to="/leagues">
+                        <v-card to="/home">
                             <v-card-title>
-                                <span class="text--secondary">Clubs</span>
+                                <span class="text--secondary">Test</span>
                                 <v-spacer></v-spacer>
                                 <v-avatar color="primary" width="66" height="66">
                                     <v-icon color="white" large>mdi-message-text-outline</v-icon>
@@ -64,7 +64,7 @@
                     <v-col lg="12" cols="12" md="12">
                         <div class="text-center">
                             <v-avatar tile size="450">
-                                <v-img src="assets/images/version.png" aspect-ratio="1">
+                                <v-img src="assets/images/version.webp" aspect-ratio="1">
                                     <template v-slot:placeholder>
                                         <v-row class="fill-height ma-0" align="center" justify="center">
                                             <v-progress-circular

@@ -18,7 +18,7 @@
                                         <v-row>
                                             <v-col cols="12" lg="6" md="6">
                                                 <v-avatar tile size="300" style="margin-top: -30px">
-                                                    <v-img src="assets/images/login.png" width="60%"
+                                                    <v-img src="assets/images/login.webp" width="60%"
                                                            aspect-ratio="1">
                                                         <template v-slot:placeholder>
                                                             <v-row class="fill-height ma-0" align="center"
@@ -49,10 +49,6 @@
                                                     <h4 class="text-lg-left text-md-left text-center">
                                                         © <a href="https://kaiztech.co" target="_blank">kaiztech.co</a>
                                                         2021 - Tous droits réservés. </h4>
-                                                </v-col>
-                                                <v-col cols="12" lg="6" md="6">
-                                                    <h4 class="text-lg-right text-md-right text-center">V
-                                                        {{ $store.state.version }}</h4>
                                                 </v-col>
                                             </v-row>
                                         </div>
