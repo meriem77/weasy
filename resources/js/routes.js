@@ -39,29 +39,21 @@ const routes = [
             title: 'Mon compte'
         }
     },
-    //roles
+    //admins
     {
-        path: '/roles',
-        name: 'roles',
-        component: () => import('./views/pages/index'),
+        path: '/admins',
+        name: 'admins',
+        component: () => import('./views/admins/index'),
         meta: {
-            title: 'Roles'
+            title: 'Admins'
         }
     },
     {
-        path: '/roles/create',
-        name: 'roles.create',
-        component: () => import('./views/pages/create'),
+        path: '/admins/create',
+        name: 'admins.create',
+        component: () => import('./views/admins/create'),
         meta: {
-            title: 'Ajouter un role'
-        }
-    },
-    {
-        path: '/roles/:id/edit',
-        name: 'roles.update',
-        component: () => import('./views/pages/update'),
-        meta: {
-            title: 'Modifier un role'
+            title: 'Ajouter admin'
         }
     },
 ]

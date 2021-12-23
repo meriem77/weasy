@@ -45,8 +45,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -155,89 +153,83 @@ var render = function() {
     "div",
     [
       _c(
-        "v-main",
+        "v-container",
+        { attrs: { fluid: "" } },
         [
           _c(
-            "v-container",
-            { attrs: { fluid: "" } },
+            "v-card",
+            { staticClass: "mb-3" },
+            [
+              _c("v-breadcrumbs", {
+                attrs: { items: _vm.breadcrumbs, large: "" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "divider",
+                    fn: function() {
+                      return [_c("v-icon", [_vm._v("mdi-chevron-right")])]
+                    },
+                    proxy: true
+                  }
+                ])
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-row",
             [
               _c(
-                "v-card",
-                { staticClass: "mb-3" },
-                [
-                  _c("v-breadcrumbs", {
-                    attrs: { items: _vm.breadcrumbs, large: "" },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "divider",
-                        fn: function() {
-                          return [_c("v-icon", [_vm._v("mdi-chevron-right")])]
-                        },
-                        proxy: true
-                      }
-                    ])
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-row",
+                "v-col",
+                { attrs: { lg: "12", cols: "12", md: "12" } },
                 [
                   _c(
-                    "v-col",
-                    { attrs: { lg: "12", cols: "12", md: "12" } },
+                    "v-card",
+                    { staticClass: "text-center" },
                     [
                       _c(
-                        "v-card",
-                        { staticClass: "text-center" },
+                        "v-card-text",
                         [
                           _c(
-                            "v-card-text",
+                            "v-avatar",
+                            { attrs: { tile: "", size: "400" } },
                             [
-                              _c(
-                                "v-avatar",
-                                { attrs: { tile: "", size: "400" } },
-                                [
-                                  _c("v-img", {
-                                    attrs: {
-                                      src: "assets/images/404.png",
-                                      width: "60%",
-                                      "aspect-ratio": "1"
+                              _c("v-img", {
+                                attrs: {
+                                  src: "assets/images/404.png",
+                                  width: "60%",
+                                  "aspect-ratio": "1"
+                                },
+                                scopedSlots: _vm._u([
+                                  {
+                                    key: "placeholder",
+                                    fn: function() {
+                                      return [
+                                        _c(
+                                          "v-row",
+                                          {
+                                            staticClass: "fill-height ma-0",
+                                            attrs: {
+                                              align: "center",
+                                              justify: "center"
+                                            }
+                                          },
+                                          [
+                                            _c("v-progress-circular", {
+                                              attrs: {
+                                                indeterminate: "",
+                                                color: "primary"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      ]
                                     },
-                                    scopedSlots: _vm._u([
-                                      {
-                                        key: "placeholder",
-                                        fn: function() {
-                                          return [
-                                            _c(
-                                              "v-row",
-                                              {
-                                                staticClass: "fill-height ma-0",
-                                                attrs: {
-                                                  align: "center",
-                                                  justify: "center"
-                                                }
-                                              },
-                                              [
-                                                _c("v-progress-circular", {
-                                                  attrs: {
-                                                    indeterminate: "",
-                                                    color: "primary"
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            )
-                                          ]
-                                        },
-                                        proxy: true
-                                      }
-                                    ])
-                                  })
-                                ],
-                                1
-                              )
+                                    proxy: true
+                                  }
+                                ])
+                              })
                             ],
                             1
                           )

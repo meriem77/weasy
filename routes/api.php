@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\{
-    AccountController
+    AccountController,
+    AdminController,
+    PartnerController,
 };
 use \Illuminate\Support\Facades\Auth;
 use \Illuminate\Http\Request;
@@ -15,4 +17,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware(['auth:sanctum'])->group(function () {
     //Account
     Route::post('account', [AccountController::class, 'update']);
+    //partner
+    Route::resource('partners', PartnerController::class);
+    //admins
+    Route::resource('admins', AdminController::class);
 });
