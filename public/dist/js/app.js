@@ -2185,7 +2185,7 @@ var routes = [//login
     return __webpack_require__.e(/*! import() */ "resources_js_views_auth_login_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/auth/login */ "./resources/js/views/auth/login.vue"));
   },
   meta: {
-    title: 'Connexion'
+    title: 'Login'
   }
 }, {
   path: '*',
@@ -2194,17 +2194,7 @@ var routes = [//login
     return __webpack_require__.e(/*! import() */ "resources_js_views_notFound_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/notFound */ "./resources/js/views/notFound.vue"));
   },
   meta: {
-    title: 'Page non trouvée!'
-  }
-}, //home
-{
-  path: '/home',
-  name: 'home',
-  component: function component() {
-    return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module './views/home/index'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
-  },
-  meta: {
-    title: 'Accueil'
+    title: 'Not found!'
   }
 }, {
   path: '/my-account',
@@ -2213,7 +2203,7 @@ var routes = [//login
     return __webpack_require__.e(/*! import() */ "resources_js_views_auth_my-account_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/auth/my-account */ "./resources/js/views/auth/my-account.vue"));
   },
   meta: {
-    title: 'Mon compte'
+    title: 'My account'
   }
 }, //admins
 {
@@ -2232,7 +2222,26 @@ var routes = [//login
     return __webpack_require__.e(/*! import() */ "resources_js_views_admins_create_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admins/create */ "./resources/js/views/admins/create.vue"));
   },
   meta: {
-    title: 'Ajouter admin'
+    title: 'Add admin'
+  }
+}, //partners
+{
+  path: '/partners',
+  name: 'partners',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_views_partners_index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/partners/index */ "./resources/js/views/partners/index.vue"));
+  },
+  meta: {
+    title: 'Partners'
+  }
+}, {
+  path: '/partners/create',
+  name: 'partners.create',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_views_partners_create_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/partners/create */ "./resources/js/views/partners/create.vue"));
+  },
+  meta: {
+    title: 'Add partner'
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__.default({
@@ -4199,7 +4208,7 @@ var render = function() {
             {
               staticClass: "mt-5",
               staticStyle: { "margin-left": "-3px" },
-              attrs: { to: "/users" }
+              attrs: { to: "/partners" }
             },
             [
               _c("div", [
@@ -4219,7 +4228,7 @@ var render = function() {
             {
               staticClass: "mt-5",
               staticStyle: { "margin-left": "-3px" },
-              attrs: { to: "/partners" }
+              attrs: { to: "/transactions" }
             },
             [
               _c("div", [
@@ -66626,7 +66635,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_auth_login_vue":1,"resources_js_views_notFound_vue":1,"resources_js_views_auth_my-account_vue":1,"resources_js_views_admins_index_vue":1,"resources_js_views_admins_create_vue":1}[chunkId]) return "dist/js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_auth_login_vue":1,"resources_js_views_notFound_vue":1,"resources_js_views_auth_my-account_vue":1,"resources_js_views_admins_index_vue":1,"resources_js_views_admins_create_vue":1,"resources_js_views_partners_index_vue":1,"resources_js_views_partners_create_vue":1}[chunkId]) return "dist/js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

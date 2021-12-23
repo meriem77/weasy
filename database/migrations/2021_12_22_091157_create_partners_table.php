@@ -19,7 +19,9 @@ class CreatePartnersTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('email')->nullable();
             $table->string('password')->nullable();
-            $table->bigInteger('points')->default(0);
+            $table->string('wilaya')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
             $table->timestamps();
         });
     }

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendPasswordMail extends Mailable
+class SendPasswordMailToAdmin extends Mailable
 {
     public $details;
 
@@ -18,6 +18,6 @@ class SendPasswordMail extends Mailable
 
     public function build()
     {
-        return $this->subject('Password')->markdown('emails.send-password-mail');
+        return $this->subject('Password')->markdown('emails.send-password-mail-to-admin');
     }
 }

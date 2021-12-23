@@ -130,7 +130,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 8:
                 _context.next = 10;
                 return _this2.$router.push({
-                  name: 'home'
+                  name: 'admins'
                 });
 
               case 10:

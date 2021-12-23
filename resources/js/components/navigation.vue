@@ -11,12 +11,12 @@
                     <img src="/images/Union 3.svg" height="30" width="30">
                 </div>
             </v-list-item>
-            <v-list-item to="/users" class="mt-5" style="margin-left: -3px">
+            <v-list-item to="/partners" class="mt-5" style="margin-left: -3px">
                 <div>
                     <img src="/images/Union 2.svg" height="30" width="30">
                 </div>
             </v-list-item>
-            <v-list-item to="/partners" class="mt-5" style="margin-left: -3px">
+            <v-list-item to="/transactions" class="mt-5" style="margin-left: -3px">
                 <div>
                     <img src="/images/people.svg" height="30" width="30">
                 </div>

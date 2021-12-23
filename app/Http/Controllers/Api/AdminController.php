@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Mail\SendPasswordMail;
+use App\Mail\SendPasswordMailToAdmin;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +17,7 @@ class AdminController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data' => Admin::where('id','!=',Auth::id())->get(),
+            'data' => Admin::where('id', '!=', Auth::id())->get(),
         ]);
     }
 
@@ -31,11 +31,10 @@ class AdminController extends Controller
         ]);
         $password = Str::random(12);
         $details = [
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
+            'name' => $request->name,
             'password' => $password,
         ];
-        Mail::to($request->email)->send(new SendPasswordMail($details));
+        Mail::to($request->email)->send(new SendPasswordMailToAdmin($details));
         Admin::create([
             'role' => $request->role,
             'name' => $request->name,

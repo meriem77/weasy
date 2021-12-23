@@ -88,7 +88,7 @@ export default {
                 let user = await axios.get('user')
                 await this.$store.dispatch('createUserAuth', user.data)
                 await this.$store.dispatch('isLoggedIn', true)
-                await this.$router.push({name: 'home'})
+                await this.$router.push({name: 'admins'})
             } catch (e) {
                 console.log(e)
             }

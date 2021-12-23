@@ -11,7 +11,7 @@ const routes = [
         name: 'login',
         component: () => import('./views/auth/login'),
         meta: {
-            title: 'Connexion'
+            title: 'Login'
         }
     },
     {
@@ -19,16 +19,7 @@ const routes = [
         name: 'notFound',
         component: () => import('./views/notFound'),
         meta: {
-            title: 'Page non trouvée!'
-        }
-    },
-    //home
-    {
-        path: '/home',
-        name: 'home',
-        component: () => import('./views/home/index'),
-        meta: {
-            title: 'Accueil'
+            title: 'Not found!'
         }
     },
     {
@@ -36,7 +27,7 @@ const routes = [
         name: 'my-account',
         component: () => import('./views/auth/my-account'),
         meta: {
-            title: 'Mon compte'
+            title: 'My account'
         }
     },
     //admins
@@ -53,7 +44,24 @@ const routes = [
         name: 'admins.create',
         component: () => import('./views/admins/create'),
         meta: {
-            title: 'Ajouter admin'
+            title: 'Add admin'
+        }
+    },
+    //partners
+    {
+        path: '/partners',
+        name: 'partners',
+        component: () => import('./views/partners/index'),
+        meta: {
+            title: 'Partners'
+        }
+    },
+    {
+        path: '/partners/create',
+        name: 'partners.create',
+        component: () => import('./views/partners/create'),
+        meta: {
+            title: 'Add partner'
         }
     },
 ]

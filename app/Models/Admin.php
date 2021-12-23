@@ -24,8 +24,8 @@ class Admin extends Authenticatable
         'password',
     ];
 
-    public function getCreatedAtAttribute()
+    public function getCreatedAtAttribute($value)
     {
-        return Carbon::parse($this->attributes['created_at'])->format('d-m-Y , H:i');
+        return Carbon::parse($value)->format('d-m-Y , H:i');
     }
 }
