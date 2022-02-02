@@ -2287,7 +2287,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 vue__WEBPACK_IMPORTED_MODULE_6__.default.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-axios.defaults.baseURL = 'https://dev.fun/api/v2/';
+axios.defaults.baseURL = '/api/';
 window.axios.defaults.withCredentials = true;
 axios.defaults.headers.common = {
   'Content-Type': "application/json",
