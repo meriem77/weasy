@@ -48,7 +48,7 @@
                                             <v-btn icon small @click="deleteAdmin(item.id)">
                                                 <v-icon small>mdi-delete</v-icon>
                                             </v-btn>
-                                            <v-btn icon small>
+                                            <v-btn icon small :to="'/admins/'+item.id+'/edit'">
                                                 <v-icon small>mdi-pencil</v-icon>
                                             </v-btn>
                                         </td>

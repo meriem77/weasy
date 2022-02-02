@@ -39,7 +39,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'right-sidebar',
   data: function data() {
-    return {};
+    return {
+      name: this.$store.state.user.name,
+      role: this.$store.state.user.role,
+      id: this.$store.state.user.id
+    };
   },
   methods: {
     logout: function logout() {
@@ -346,11 +350,11 @@ var render = function() {
     [
       _c(
         "v-card",
-        { attrs: { flat: "", color: "#F4F5FE" } },
+        { staticClass: "rounded-xl", attrs: { flat: "", color: "#F4F5FE" } },
         [
           _c(
             "v-img",
-            { attrs: { src: "/images/carte.svg", height: "200" } },
+            { attrs: { src: "/images/card.png", height: "170" } },
             [
               _c(
                 "v-app-bar",
@@ -378,7 +382,7 @@ var render = function() {
                       staticClass: "white--text",
                       staticStyle: { "font-size": "14px" }
                     },
-                    [_vm._v("Supper admin")]
+                    [_vm._v(_vm._s(_vm.role))]
                   )
                 ],
                 1
@@ -386,23 +390,31 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-card-title",
-                { staticClass: "white--text mt-8" },
+                {
+                  staticClass: "white--text ",
+                  staticStyle: { "margin-top": "-15px" }
+                },
                 [
-                  _c("v-avatar", { attrs: { size: "56" } }, [
+                  _c("v-avatar", { attrs: { size: "65" } }, [
                     _c("img", {
                       attrs: {
                         alt: "user",
                         src:
-                          "https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg"
+                          "https://fac.img.pmdstatic.net/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2FFAC.2Fvar.2Ffemmeactuelle.2Fstorage.2Fimages.2Famour.2Fcoaching-amoureux.2Fcest-quoi-belle-femme-temoignages-43206.2F14682626-1-fre-FR.2Fc-est-quoi-une-belle-femme-temoignages.2Ejpg/1200x1200/quality/80/crop-from/center/c-est-quoi-une-belle-femme-temoignages.jpeg"
                       }
                     })
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "ml-3" }, [
-                    _vm._v("Oussama seddiki "),
-                    _c("small", { staticStyle: { "font-size": "12px" } }, [
-                      _vm._v("00001")
-                    ])
+                    _vm._v(" " + _vm._s(_vm.name) + "  "),
+                    _c(
+                      "small",
+                      {
+                        staticClass: "ml-3",
+                        staticStyle: { "font-size": "12px" }
+                      },
+                      [_vm._v(_vm._s(_vm.id))]
+                    )
                   ])
                 ],
                 1

@@ -18,14 +18,14 @@
                                         <v-row>
                                             <v-col cols="12" lg="6" md="6">
                                                 <v-avatar tile size="300" style="margin-top: -30px">
-                                                    <v-img src="assets/images/login.webp" width="60%"
+                                                    <v-img src="/images/login2.svg"
                                                            aspect-ratio="1">
                                                         <template v-slot:placeholder>
                                                             <v-row class="fill-height ma-0" align="center"
                                                                    justify="center">
                                                                 <v-progress-circular
                                                                     indeterminate
-                                                                    color="primary"
+                                                                    dark
                                                                 ></v-progress-circular>
                                                             </v-row>
                                                         </template>
@@ -38,7 +38,7 @@
                                                 <v-text-field v-model="form.password" outlined label="Mot de passe *"
                                                               required
                                                               type="password"></v-text-field>
-                                                <v-btn :loading="loading" type="submit" color="primary" large block>
+                                                <v-btn :loading="loading" type="submit" dark large block>
                                                     Connexion
                                                 </v-btn>
                                             </v-col>
@@ -80,7 +80,7 @@ export default {
                 }).catch(error => {
                     this.errors = error.response.data.errors;
                     this.loading = false
-                })
+                });
             });
         },
         async getUserAuth() {
@@ -88,7 +88,7 @@ export default {
                 let user = await axios.get('user')
                 await this.$store.dispatch('createUserAuth', user.data)
                 await this.$store.dispatch('isLoggedIn', true)
-                await this.$router.push({name: 'admins'})
+                await this.$router.push({name: 'home'})
             } catch (e) {
                 console.log(e)
             }

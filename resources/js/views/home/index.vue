@@ -46,7 +46,7 @@
                                             <v-skeleton-loader type="card-heading"></v-skeleton-loader>
                                         </v-sheet>
                                         <h1 v-else class="ml-6" style="font-size:42px">
-                                            {{wazaPoint.value}}
+                                            {{wazaPoint.balence}}
                                         </h1>
                                     </v-row>
                                     <v-row class="mt-4 " >
@@ -63,12 +63,15 @@
                                             style="top: -17px;"
                                             :rotate="-90"
                                             :size="70"
-                                            :width="15"
+                                            :width="10"
                                             :value="valuePoint"
-                                            color="red"
+                                            color="#00CCF2"
                                         >
-                                            {{ valuePoint }}
+                                            {{ valuePoint }} %
                                         </v-progress-circular>
+
+
+
                                     </v-row>
 
                                 </v-col>
@@ -93,15 +96,15 @@
                                     :rotate="-90"
                                     :size="150"
                                     :width="15"
-                                    :value="valueUser"
+                                    :value="valueU2U"
                                     color="pink"
                                 >
-                                    {{ valueUser }}
+                                    {{ valueU2U }} %
                                 </v-progress-circular>
                                 <v-card-actions>
                                     <v-avatar size="20" class="mr-2" color="pink">
                                     </v-avatar>
-                                    110 000 WAP
+                                    {{ balenceU2U }} WAP
                                 </v-card-actions>
                             </v-card>
                         </v-col>
@@ -115,16 +118,16 @@
                                     :rotate="-90"
                                     :size="150"
                                     :width="15"
-                                    :value="valuePartner"
+                                    :value="valueB2C"
                                     color="purple"
                                 >
-                                    {{ valuePartner }}
+                                    {{ valueB2C }} %
                                 </v-progress-circular>
 
                                 <v-card-actions>
                                     <v-avatar size="20" class="mr-2" color="purple">
                                     </v-avatar>
-                                    110 000 WAP
+                                    {{ balenceB2U }} WAP
                                 </v-card-actions>
                             </v-card>
                         </v-col>
@@ -141,13 +144,13 @@
                                     :value="valueAds"
                                     color="teal"
                                 >
-                                    {{ valueAds }}
+                                    {{ valueAds }} %
                                 </v-progress-circular>
 
                                 <v-card-actions>
                                     <v-avatar size="20" class="mr-2" color="teal">
                                     </v-avatar>
-                                    110 000 WAP
+                                    0 WAP
                                 </v-card-actions>
                             </v-card>
                         </v-col>
@@ -161,16 +164,16 @@
                                     :rotate="-90"
                                     :size="150"
                                     :width="15"
-                                    :value="valueBusiness"
+                                    :value="valueP2B"
                                     color="blue"
                                 >
-                                    {{ valueBusiness }}
+                                    {{ valueP2B }} %
                                 </v-progress-circular>
 
                                 <v-card-actions>
                                     <v-avatar size="20" class="mr-2" color="blue">
                                     </v-avatar>
-                                    0 WAP
+                                    {{ balenceP2B }} WAP
                                 </v-card-actions>
                             </v-card>
                         </v-col>
@@ -184,16 +187,16 @@
                                     :rotate="-90"
                                     :size="150"
                                     :width="15"
-                                    :value="valuePartUs"
+                                    :value="valueP2U"
                                     color="orange"
                                 >
-                                    {{ valuePartUs }}
+                                    {{ valueP2U }} %
                                 </v-progress-circular>
 
                                 <v-card-actions>
                                     <v-avatar size="20" class="mr-2" color="orange">
                                     </v-avatar>
-                                    110 000 WAP
+                                    {{ balenceP2U }} WAP
                                 </v-card-actions>
                             </v-card>
                         </v-col>
@@ -208,7 +211,7 @@
         <!----Refill coins dialog---->
         <v-dialog v-model="RefillDialog" persistent max-width="700">
             <v-card>
-                <form @submit.prevent="createWazaPoint">
+                <form @submit.prevent="Refill">
                     <v-card-title>Refill</v-card-title>
                     <v-divider></v-divider>
                     <v-card-text>
@@ -233,7 +236,7 @@
 
 <script>
 
-import PieChart from "./chart/PieChart";
+import PieChart from "../balance/chart/PieChart";
 import RightSidebar from "../../components/right-sidebar";
 
 export default {
@@ -249,12 +252,20 @@ export default {
             intervalAds: {},
             intervalBusiness: {},
             intervalPartUs: {},
-            valueUser: 0,
+            valueU2U: 0,
+            balenceU2U:0,
             valueAds: 0,
-            valueBusiness: 0,
-            valuePartUs: 0,
-            valuePartner: 0,
+            valueB2C: 0,
+            balenceB2U:0,
+            valueP2U: 0,
+            balenceP2U:0,
+            valueP2B: 0,
+            balenceP2B:0,
             valuePoint:0,
+            U2U:0,
+            B2C:0,
+            P2U:0,
+            P2B:0,
             value: 0,
             errors: {},
             form:{},
@@ -269,8 +280,8 @@ export default {
         clearInterval(this.interval)
     },
     methods: {
-        getWazaPoint() {
-            axios.get('/wazaPoint').then(res => {
+        getBalence() {
+            axios.get('/balence').then(res => {
                 this.loading = false
                 this.wazaPoint = res.data.data
             }).catch(err => {
@@ -278,12 +289,12 @@ export default {
                 this.loading = false
             })
         },
-        createWazaPoint() {
+        Refill() {
             this.btnLoading = true
-            axios.post('/wazaPoint', this.form).then(() => {
+            axios.post('/refill', this.form).then(() => {
                 this.$error = false
                 this.$success = true
-                this.$router.push('/partners')
+                this.getBalence()
                 this.RefillDialog=false
             }).catch(err => {
                 console.log(err)
@@ -297,61 +308,103 @@ export default {
         dateFunction(){
             this.date=new Date()
             this.month= this.monthNames[this.date.getMonth()]
-            console.log(this.month)
-        }
+        },
+        getTransactionsCountMonth() {
+            axios.get('/TransactionsCountMonth').then(res => {
+                this.loading = false
+                this.value = res.data.A2P
+                this.U2U = res.data.U2U
+                this.B2C = res.data.B2C
+                this.P2U = res.data.P2U
+                this.P2B = res.data.P2B
+
+            }).catch(err => {
+                console.log(err)
+                this.loading = false
+            })
+        },
+
+        getBalenceCountMonth() {
+            axios.get('/BalenceCountMonth').then(res => {
+                this.loading = false
+                this.balenceU2U = res.data.U2U
+                this.balenceB2U = res.data.B2C
+                this.balenceP2U = res.data.P2U
+                this.balenceP2B = res.data.P2B
+
+            }).catch(err => {
+                console.log(err)
+                this.loading = false
+            })
+        },
+
+
     },
     created() {
-        this.getWazaPoint()
+        this.getBalence()
         this.dateFunction()
+        this.getTransactionsCountMonth()
+        this.getBalenceCountMonth()
+
     },
     mounted () {
         this.intervalPoint = setInterval(() => {
-            if (this.valuePoint === 60) {
-                return (this.valuePoint = 60)
+            var value = this.value/100
+
+            if (this.valuePoint === value) {
+                return (this.valuePoint = value)
             }
-            this.valuePoint += 1
+            this.valuePoint += value
         }, 10),
+
             this.intervalUser = setInterval(() => {
-                if (this.valueUser === 10) {
-                    return (this.valueUser = 10)
+                var value = this.U2U/100
+                if (this.valueU2U === value) {
+                    return (this.valueU2U = value)
                 }
-                this.valueUser += 1
-            }, 10),
-            this.intervalPartner = setInterval(() => {
-                if (this.valuePartner === 40) {
-                    return (this.valuePartner = 40)
-                }
-                this.valuePartner += 1
-            }, 10),
-            this.intervalAds = setInterval(() => {
-                if (this.valueAds === 35) {
-                    return (this.valueAds = 35)
-                }
-                this.valueAds += 1
-            }, 10),
-            this.intervalBusiness = setInterval(() => {
-                if (this.valueBusiness === 0) {
-                    return (this.valueBusiness = 0)
-                }
-                this.valueBusiness += 1
-            }, 10),
-            this.intervalPartUs = setInterval(() => {
-                if (this.valuePartUs === 10) {
-                    return (this.valuePartUs = 10)
-                }
-                this.valuePartUs += 1
+                this.valueU2U += value
             }, 10)
+            // this.intervalPartner = setInterval(() => {
+            //     var value = this.B2C/100
+            //     if (this.valueB2C === value) {
+            //         return (this.valueB2C = value)
+            //     }
+            //     this.valueB2C += value
+            // }, 10),
+            // this.intervalAds = setInterval(() => {
+            //     if (this.valueAds === 0) {
+            //         return (this.valueAds = 0)
+            //     }
+            //     this.valueAds += 0
+            // }, 10),
+            // this.intervalBusiness = setInterval(() => {
+            //     var value = this.P2B/100
+            //     if (this.valueP2B === value) {
+            //         return (this.valueP2B = value)
+            //     }
+            //     this.valueP2B += value
+            // }, 10),
+            // this.intervalPartUs = setInterval(() => {
+            //     var value = this.P2U/100
+            //     if (this.valueP2U === value) {
+            //         return (this.valueP2U = value)
+            //     }
+            //     this.valueP2U += value
+            // }, 10)
     },
 
 }
 </script>
-
 <style scoped>
-
 .v-progress-circular {
     margin: 1rem;
     left: 20px;
 
 }
+</style>
 
-</>
+
+
+
+
+

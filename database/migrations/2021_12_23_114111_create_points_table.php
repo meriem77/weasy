@@ -15,7 +15,7 @@ class CreatePointsTable extends Migration
     {
         Schema::create('points', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('partner_id')->nullable();
+            $table->bigInteger('user_id')->nullable();
             $table->bigInteger('value')->nullable();
             $table->timestamps();
         });

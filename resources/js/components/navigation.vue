@@ -1,31 +1,37 @@
 <template>
     <div>
         <v-navigation-drawer floating="floating" app class="pt-4" color="#ECEDF6" mini-variant>
-            <v-list-item class="px-2">
-                <div style="margin-left: -24px">
+            <v-list-item class="home px-2" to="/home">
+                <div style="margin-left: -26px" >
                     <img src="/images/logo.png" height="90" width="90">
                 </div>
             </v-list-item>
-            <v-list-item to="/admins" class="mt-15" style="margin-left: -3px">
-                <div>
-                    <img src="/images/Union 3.svg" height="30" width="30">
-                </div>
-            </v-list-item>
-            <v-list-item to="/partners" class="mt-5" style="margin-left: -3px">
-                <div>
-                    <img src="/images/Union 2.svg" height="30" width="30">
-                </div>
-            </v-list-item>
+<!--            <v-list-item to="/admins" class="mt-15" style="margin-left: -3px">-->
+<!--                <div>-->
+<!--                    <img src="/images/Union 3.svg" height="30" width="30">-->
+<!--                </div>-->
+<!--            </v-list-item>-->
             <v-list-item to="/transactions" class="mt-5" style="margin-left: -3px">
+                <div>
+                    <img src="/images/partners.svg" height="30" width="30">
+                </div>
+            </v-list-item>
+            <v-list-item to="/users" class="mt-5" style="margin-left: -3px">
                 <div>
                     <img src="/images/people.svg" height="30" width="30">
                 </div>
             </v-list-item>
-            <v-list-item to="/balance" class="mt-5" style="margin-left: -3px">
+            <v-list-item to="/traders" class="mt-5" style="margin-left: -3px">
                 <div>
-                    <img src="/images/Groupe 207.svg" height="30" width="30">
+                    <img src="/images/Ecommerce.svg" height="30" width="30">
                 </div>
             </v-list-item>
+<!--            <v-list-item to="/balance" class="mt-5" style="margin-left: -3px">-->
+<!--                <div>-->
+<!--                    <img src="/images/Groupe 207.svg" height="30" width="30">-->
+<!--                </div>-->
+<!--            </v-list-item>-->
+
         </v-navigation-drawer>
         <v-overlay :value="overlay" opacity="1" color="white">
             <v-progress-circular indeterminate size="50" color="#036358" width="8"></v-progress-circular>
@@ -65,7 +71,9 @@ export default {
     background: none;
     border-right: solid #443b3b;
 }
-
+.home {
+    border-right: none !important;
+}
 .v-application a {
     color: #ECEDF6;
 }

@@ -5,8 +5,9 @@ import router from "./routes"
 import store from './store/index'
 import './globalVariables'
 
+Vue.component('pagination', require('laravel-vue-pagination'));
 window.axios = require('axios')
-axios.defaults.baseURL = '/api/';
+axios.defaults.baseURL = 'https://dev.fun/api/v2/';
 window.axios.defaults.withCredentials = true;
 axios.defaults.headers.common = {
     'Content-Type': "application/json",

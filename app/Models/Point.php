@@ -10,12 +10,12 @@ class Point extends Model
     use HasFactory;
 
     protected $fillable = [
-        'partner_id',
+        'user_id',
         'value',
     ];
 
-    public function partner()
+    public function user()
     {
-        return $this->belongsTo(Partner::class);
+        return $this->belongsTo(User::class);
     }
 }

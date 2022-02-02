@@ -20,10 +20,10 @@ class Partner extends Model
         'phone',
     ];
 
-    public function points()
-    {
-        return $this->hasMany(Point::class);
-    }
+    // public function points()
+    // {
+    //     return $this->hasMany(Point::class);
+    // }
 
     public function getCreatedAtAttribute($value)
     {

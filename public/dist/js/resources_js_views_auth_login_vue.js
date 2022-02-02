@@ -130,7 +130,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 8:
                 _context.next = 10;
                 return _this2.$router.push({
-                  name: 'admins'
+                  name: 'home'
                 });
 
               case 10:
@@ -327,9 +327,7 @@ var render = function() {
                                               [
                                                 _c("v-img", {
                                                   attrs: {
-                                                    src:
-                                                      "assets/images/login.webp",
-                                                    width: "60%",
+                                                    src: "/images/login2.svg",
                                                     "aspect-ratio": "1"
                                                   },
                                                   scopedSlots: _vm._u([
@@ -355,8 +353,7 @@ var render = function() {
                                                                   attrs: {
                                                                     indeterminate:
                                                                       "",
-                                                                    color:
-                                                                      "primary"
+                                                                    dark: ""
                                                                   }
                                                                 }
                                                               )
@@ -432,7 +429,7 @@ var render = function() {
                                                 attrs: {
                                                   loading: _vm.loading,
                                                   type: "submit",
-                                                  color: "primary",
+                                                  dark: "",
                                                   large: "",
                                                   block: ""
                                                 }

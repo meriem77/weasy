@@ -34,7 +34,7 @@ class AdminController extends Controller
             'name' => $request->name,
             'password' => $password,
         ];
-        Mail::to($request->email)->send(new SendPasswordMailToAdmin($details));
+        // Mail::to($request->email)->send(new SendPasswordMailToAdmin($details));
         Admin::create([
             'role' => $request->role,
             'name' => $request->name,
@@ -43,6 +43,30 @@ class AdminController extends Controller
             'password' => Hash::make($password),
         ]);
         return response()->json(['success' => true]);
+    }
+
+    public function edit($id){
+        return response()->json([
+            'success' => true,
+            'data' => Admin::find($id),
+        ]);
+    }
+
+    public function update(Request $request,$id){
+        $request->validate([
+            'role' => 'required',
+            'name' => 'required|min:3|max:191',
+            'fonction' => 'required',
+            'email' => 'required|email',
+        ]);
+        Admin::where('id',$id)->update([
+            'role' => $request->role,
+            'name' => $request->name,
+            'fonction' => $request->fonction,
+            'email' => $request->email,
+        ]);
+        return response()->json(['success' => true]);
+
     }
 
     public function destroy($id)

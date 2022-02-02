@@ -9,15 +9,27 @@ const routes = [
     {
         path: '/login',
         name: 'login',
-        component: () => import('./views/auth/login'),
+        component: () =>
+            import ('./views/auth/login'),
         meta: {
             title: 'Login'
+        }
+    },
+    //Home
+    {
+        path: '/home',
+        name: 'home',
+        component: () =>
+            import ('./views/home/index'),
+        meta: {
+            title: 'Home'
         }
     },
     {
         path: '*',
         name: 'notFound',
-        component: () => import('./views/notFound'),
+        component: () =>
+            import ('./views/notFound'),
         meta: {
             title: 'Not found!'
         }
@@ -25,7 +37,8 @@ const routes = [
     {
         path: '/my-account',
         name: 'my-account',
-        component: () => import('./views/auth/my-account'),
+        component: () =>
+            import ('./views/auth/my-account'),
         meta: {
             title: 'My account'
         }
@@ -34,7 +47,8 @@ const routes = [
     {
         path: '/admins',
         name: 'admins',
-        component: () => import('./views/admins/index'),
+        component: () =>
+            import ('./views/admins/index'),
         meta: {
             title: 'Admins'
         }
@@ -42,28 +56,74 @@ const routes = [
     {
         path: '/admins/create',
         name: 'admins.create',
-        component: () => import('./views/admins/create'),
+        component: () =>
+            import ('./views/admins/create'),
         meta: {
             title: 'Add admin'
         }
     },
+    {
+        path: '/admins/:id/edit',
+        name: 'admins.update',
+        component: () =>
+            import ('./views/admins/update'),
+        meta: {
+            title: 'Update admins'
+        }
+    },
+    //transations
+    {
+        path: '/transactions',
+        name: 'Transactions',
+        component: () =>
+            import ('./views/transactions/index'),
+        meta: {
+            title: 'Transactions'
+        }
+    },
     //partners
     {
-        path: '/partners',
+        path: '/transactions/partners',
         name: 'partners',
-        component: () => import('./views/partners/index'),
+        component: () =>
+            import ('./views/partners/index'),
         meta: {
             title: 'Partners'
         }
     },
+
+    //PartnersUsers
     {
-        path: '/partners/create',
-        name: 'partners.create',
-        component: () => import('./views/partners/create'),
+        path: '/transactions/users',
+        name: 'partners users',
+        component: () =>
+            import ('./views/partners/userList'),
         meta: {
-            title: 'Add partner'
+            title: 'Partners Users'
         }
     },
+    //Users
+    {
+        path: '/users',
+        name: 'users',
+        component: () =>
+            import ('./views/users/index'),
+        meta: {
+            title: 'Users'
+        }
+    },
+    //Traders
+    {
+        path: '/traders',
+        name: 'traders',
+        component: () =>
+            import ('./views/traders/index'),
+        meta: {
+            title: 'Traders'
+        }
+    },
+
+
 ]
 const router = new VueRouter({
     mode: 'history',
