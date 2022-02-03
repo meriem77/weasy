@@ -34,43 +34,7 @@ const routes = [
             title: 'Not found!'
         }
     },
-    {
-        path: '/my-account',
-        name: 'my-account',
-        component: () =>
-            import ('./views/auth/my-account'),
-        meta: {
-            title: 'My account'
-        }
-    },
-    //admins
-    {
-        path: '/admins',
-        name: 'admins',
-        component: () =>
-            import ('./views/admins/index'),
-        meta: {
-            title: 'Admins'
-        }
-    },
-    {
-        path: '/admins/create',
-        name: 'admins.create',
-        component: () =>
-            import ('./views/admins/create'),
-        meta: {
-            title: 'Add admin'
-        }
-    },
-    {
-        path: '/admins/:id/edit',
-        name: 'admins.update',
-        component: () =>
-            import ('./views/admins/update'),
-        meta: {
-            title: 'Update admins'
-        }
-    },
+
     //transations
     {
         path: '/transactions',
@@ -122,6 +86,17 @@ const routes = [
             title: 'Traders'
         }
     },
+    //Stores
+    {
+        path: '/stores',
+        name: 'stores',
+        component: () =>
+            import ('./views/store/index'),
+        meta: {
+            title: 'Stores'
+        }
+    },
+
 
 
 ]
@@ -144,6 +119,6 @@ router.beforeEach((to, from, next) => {
 router.beforeEach((to, from, next) => {
     document.title = process.env.MIX_APP_NAME + ' | ' + to.meta.title
     next()
-})
+});
 
 export default router

@@ -2,13 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\{
-    AccountController,
-    AdminController,
     PartnerController,
-    WazaPointController,
     UserController,
     TransactionController,
     WalletController,
+    StoreController,
 };
 use \Illuminate\Support\Facades\Auth;
 use \Illuminate\Http\Request;
@@ -20,11 +18,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::middleware(['auth:sanctum'])->group(function () {
-    //Account
-    Route::post('account', [AccountController::class, 'update']);
-    //wazaPoint
-    Route::get('wazaPoint', [WazaPointController::class, 'index']);
-    Route::post('wazaPoint', [WazaPointController::class, 'store']);
 
     //users
     Route::get('users', [UserController::class, 'index']);
@@ -40,13 +33,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('partners/{partner}', [PartnerController::class, 'update']);
     Route::get('ditributePartners', [PartnerController::class, 'getDitributePartners']);
     Route::post('refillPartner/{partner}', [PartnerController::class, 'refillPartner']);
-
-
-
-    //admins
-    Route::resource('admins', AdminController::class)->except('edit','update');
-    Route::get('admins/{admin}/edit', [AdminController::class, 'edit']);
-    Route::post('admins/{admin}', [AdminController::class, 'update']);
 
     //Admin Transaction
     Route::post('upgradeUser/{upgradeUser}', [TransactionController::class, 'upgrade']);
@@ -66,6 +52,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('balence', [WalletController::class, 'getBalence']);
     Route::post('refill', [WalletController::class, 'refill']);
     Route::post('destributeWallet', [WalletController::class, 'destributeWallet']);
+
+    //Stores
+    Route::get('stores', [StoreController::class, 'getStores']);
+    Route::post('stores/{store}', [StoreController::class, 'confirmStore']);
 
     //Statistic
     Route::get('TransactionsCountMonth', [TransactionController::class, 'getCountTransactionsMonth']);

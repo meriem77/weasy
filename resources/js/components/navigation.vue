@@ -26,11 +26,11 @@
                     <img src="/images/Ecommerce.svg" height="30" width="30">
                 </div>
             </v-list-item>
-<!--            <v-list-item to="/balance" class="mt-5" style="margin-left: -3px">-->
-<!--                <div>-->
-<!--                    <img src="/images/Groupe 207.svg" height="30" width="30">-->
-<!--                </div>-->
-<!--            </v-list-item>-->
+            <v-list-item to="/stores" class="mt-5" style="margin-left: -3px">
+                <div>
+                    <img src="/images/store.png" height="30" width="30">
+                </div>
+            </v-list-item>
 
         </v-navigation-drawer>
         <v-overlay :value="overlay" opacity="1" color="white">

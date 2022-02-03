@@ -111,10 +111,10 @@
 </template>
 
 <script>
-import {Row} from "../../../public/dist/js/app";
+
 export default {
     name: 'right-sidebar',
-    components: {Row},
+
     data() {
         return {
             name: this.$store.state.user.fullName,

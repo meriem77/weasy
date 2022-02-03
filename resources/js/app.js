@@ -5,7 +5,6 @@ import router from "./routes"
 import store from './store/index'
 import './globalVariables'
 
-Vue.component('pagination', require('laravel-vue-pagination'));
 window.axios = require('axios')
 axios.defaults.baseURL = '/api/';
 window.axios.defaults.withCredentials = true;
