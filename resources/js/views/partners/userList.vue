@@ -49,7 +49,7 @@
                             Users list
                             <v-spacer/>
                             <v-row>
-                                <v-col lg="4" md="4" cols="4">
+                                <v-col lg="6" md="4" cols="4">
                                     <v-text-field dense rounded solo prepend-inner-icon="mdi-magnify" v-model="query"
                                                   style="margin-bottom: -30px"
                                                   placeholder="Recherche..."
@@ -205,6 +205,9 @@ export default {
                 total: 0
             },
             wazaPoint:'',
+            userlist: [],
+
+
 
         }
     },
@@ -215,6 +218,7 @@ export default {
             axios.get('/users?page=' + this.pagination.current).then(res => {
                 this.loading = false
                 this.users = res.data.data
+
                 this.pagination.current = res.data.data.current_page;
                 this.pagination.total = res.data.data.last_page;
 
@@ -223,6 +227,7 @@ export default {
                 this.loading = false
             })
         },
+
         onPageChange() {
             this.getUsers();
         },
@@ -288,11 +293,37 @@ export default {
     computed: {
         searchPartners() {
 
-            const users = Object.values(this.users);
-            console.log(users)
-            return users.filter(user => {
-                return this.query ? user.fullName.toLowerCase().trim().includes(this.query.toLowerCase().trim()) : this.users;
+            var items = this.users;
+            var result = {}
+console.log(items)
+            Object.keys(items).forEach(key => {
+                const item = items[key]
+                console.log(item)
+                if (item.Users.some(spec => spec.fullName === this.query)) {
+
+                    result[key] = item
+                }
             })
+            console.log(result);
+           return result
+
+
+            // return this.userlist.filter(product => !product.fullName.indexOf(this.query))
+            // var filtered = this.users
+            // this.activeFilters.forEach(filter => {
+            //     filtered = filtered.filter(user => {
+            //         return this.query ? user.phone.includes(this.query) : this.users;
+            //     })
+            // })
+            // return filtered
+
+            //  console.log(Object.keys(this.users))
+            //
+
+        //     return this.users.filter(user => {
+        //
+        //         return this.query ? user.fullName.toLowerCase().trim().includes(this.query.toLowerCase().trim()) : this.users;
+        //     })
         }
     },
 }

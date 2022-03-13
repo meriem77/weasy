@@ -1,4 +1,4 @@
 @component('mail::message')
-<p>Bonjour {{$details['name']}},</p>
-<p>Votre mot de passe est : {{$details['password']}}</p>
+<p>Bonjour {{$details['Full_Name']}},</p>
+<p>Votre store a été refusé, vous devez </p>
 @endcomponent

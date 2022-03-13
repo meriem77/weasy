@@ -19,6 +19,7 @@ class PartnerController extends Controller
                 ->whereHas('user', function ($query) {
                     return $query->where('type', '=', User::PARTNER_TYPE);
                 })
+                ->latest()
                 ->paginate(10),
         ]);
     }

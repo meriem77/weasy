@@ -312,14 +312,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -341,8 +333,33 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    ConfirmStore: function ConfirmStore(id) {
+    handleClick: function handleClick(item) {
+      window.open(item, '_blank'); //to open in new tab
+    },
+    refuseStore: function refuseStore(id) {
       var _this = this;
+
+      sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#272727',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Delete it!'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios.post('/storesDelete/' + id).then(function () {
+            _this.getStores();
+          })["catch"](function (err) {
+            console.log(err);
+            _this.loading = false;
+          });
+        }
+      });
+    },
+    ConfirmStore: function ConfirmStore(id) {
+      var _this2 = this;
 
       sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
         title: 'Are you sure?',
@@ -355,25 +372,25 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.isConfirmed) {
           axios.post('/stores/' + id).then(function () {
-            _this.getStores();
+            _this2.getStores();
           })["catch"](function (err) {
             console.log(err);
-            _this.loading = false;
+            _this2.loading = false;
           });
         }
       });
     },
     getStores: function getStores() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('/stores?page=' + this.pagination.current).then(function (res) {
-        _this2.loading = false;
-        _this2.stores = res.data.data;
-        _this2.pagination.current = res.data.data.current_page;
-        _this2.pagination.total = res.data.data.last_page;
+        _this3.loading = false;
+        _this3.stores = res.data.data;
+        _this3.pagination.current = res.data.data.current_page;
+        _this3.pagination.total = res.data.data.last_page;
       })["catch"](function (err) {
         console.log(err);
-        _this2.loading = false;
+        _this3.loading = false;
       });
     },
     onPageChange: function onPageChange() {
@@ -4210,170 +4227,37 @@ var render = function() {
                                               _c(
                                                 "td",
                                                 [
-                                                  _c("iframe", {
-                                                    staticClass: "mt-2",
-                                                    attrs: {
-                                                      height: "95",
-                                                      width: "95",
-                                                      src: item.rc
-                                                    },
-                                                    on: {
-                                                      click: function($event) {
-                                                        _vm.overlay = !_vm.overlay
-                                                      }
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
                                                   _c(
-                                                    "v-overlay",
+                                                    "v-btn",
                                                     {
-                                                      staticClass:
-                                                        "align-center justify-center",
-                                                      attrs: { contained: "" },
-                                                      model: {
-                                                        value: _vm.overlay,
-                                                        callback: function(
-                                                          $$v
+                                                      attrs: {
+                                                        icon: "",
+                                                        small: ""
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
                                                         ) {
-                                                          _vm.overlay = $$v
-                                                        },
-                                                        expression: "overlay"
+                                                          return _vm.handleClick(
+                                                            item.rc
+                                                          )
+                                                        }
                                                       }
                                                     },
                                                     [
-                                                      _c("iframe", {
-                                                        attrs: {
-                                                          height: "550",
-                                                          width: "550",
-                                                          src: item.rc
+                                                      _c(
+                                                        "v-icon",
+                                                        {
+                                                          attrs: { small: "" }
                                                         },
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.overlay = false
-                                                          }
-                                                        }
-                                                      })
-                                                    ]
+                                                        [_vm._v("mdi-eye")]
+                                                      )
+                                                    ],
+                                                    1
                                                   )
                                                 ],
                                                 1
                                               ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "td",
-                                                [
-                                                  _c("iframe", {
-                                                    staticClass: "mt-2",
-                                                    attrs: {
-                                                      height: "95",
-                                                      width: "95",
-                                                      src: item.nif
-                                                    },
-                                                    on: {
-                                                      click: function($event) {
-                                                        _vm.overlay = !_vm.overlay
-                                                      }
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "v-overlay",
-                                                    {
-                                                      staticClass:
-                                                        "align-center justify-center",
-                                                      attrs: { contained: "" },
-                                                      model: {
-                                                        value: _vm.overlay,
-                                                        callback: function(
-                                                          $$v
-                                                        ) {
-                                                          _vm.overlay = $$v
-                                                        },
-                                                        expression: "overlay"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("iframe", {
-                                                        attrs: {
-                                                          height: "550",
-                                                          width: "550",
-                                                          src: item.nif
-                                                        },
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.overlay = false
-                                                          }
-                                                        }
-                                                      })
-                                                    ]
-                                                  )
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "td",
-                                                [
-                                                  _c("iframe", {
-                                                    staticClass: "mt-2",
-                                                    attrs: {
-                                                      height: "95",
-                                                      width: "95",
-                                                      src: item.agremen
-                                                    },
-                                                    on: {
-                                                      click: function($event) {
-                                                        _vm.overlay = !_vm.overlay
-                                                      }
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "v-overlay",
-                                                    {
-                                                      staticClass:
-                                                        "align-center justify-center",
-                                                      attrs: { contained: "" },
-                                                      model: {
-                                                        value: _vm.overlay,
-                                                        callback: function(
-                                                          $$v
-                                                        ) {
-                                                          _vm.overlay = $$v
-                                                        },
-                                                        expression: "overlay"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("iframe", {
-                                                        attrs: {
-                                                          height: "550",
-                                                          width: "550",
-                                                          src: item.agremen
-                                                        },
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.overlay = false
-                                                          }
-                                                        }
-                                                      })
-                                                    ]
-                                                  )
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c("td", [
-                                                _vm._v(
-                                                  _vm._s(item.category.name)
-                                                )
-                                              ]),
                                               _vm._v(" "),
                                               _c(
                                                 "td",
@@ -4389,8 +4273,8 @@ var render = function() {
                                                         click: function(
                                                           $event
                                                         ) {
-                                                          return _vm.ConfirmStore(
-                                                            item.id
+                                                          return _vm.handleClick(
+                                                            item.nif
                                                           )
                                                         }
                                                       }
@@ -4401,7 +4285,255 @@ var render = function() {
                                                         {
                                                           attrs: { small: "" }
                                                         },
-                                                        [_vm._v("mdi-check")]
+                                                        [_vm._v("mdi-eye")]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "td",
+                                                [
+                                                  _c(
+                                                    "v-btn",
+                                                    {
+                                                      attrs: {
+                                                        icon: "",
+                                                        small: ""
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.handleClick(
+                                                            item.agremen
+                                                          )
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "v-icon",
+                                                        {
+                                                          attrs: { small: "" }
+                                                        },
+                                                        [_vm._v("mdi-eye")]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c("td", [
+                                                _vm._v(
+                                                  _vm._s(item.category.name)
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c(
+                                                "td",
+                                                [
+                                                  _c(
+                                                    "v-row",
+                                                    [
+                                                      _c(
+                                                        "v-col",
+                                                        { attrs: { lg: "2" } },
+                                                        [
+                                                          _c(
+                                                            "v-tooltip",
+                                                            {
+                                                              attrs: {
+                                                                bottom: ""
+                                                              },
+                                                              scopedSlots: _vm._u(
+                                                                [
+                                                                  {
+                                                                    key:
+                                                                      "activator",
+                                                                    fn: function(
+                                                                      ref
+                                                                    ) {
+                                                                      var on =
+                                                                        ref.on
+                                                                      var attrs =
+                                                                        ref.attrs
+                                                                      return [
+                                                                        _c(
+                                                                          "div",
+                                                                          _vm._g(
+                                                                            _vm._b(
+                                                                              {},
+                                                                              "div",
+                                                                              attrs,
+                                                                              false
+                                                                            ),
+                                                                            on
+                                                                          ),
+                                                                          [
+                                                                            _c(
+                                                                              "v-btn",
+                                                                              {
+                                                                                attrs: {
+                                                                                  icon:
+                                                                                    "",
+                                                                                  small:
+                                                                                    ""
+                                                                                },
+                                                                                on: {
+                                                                                  click: function(
+                                                                                    $event
+                                                                                  ) {
+                                                                                    return _vm.ConfirmStore(
+                                                                                      item.id
+                                                                                    )
+                                                                                  }
+                                                                                }
+                                                                              },
+                                                                              [
+                                                                                _c(
+                                                                                  "v-icon",
+                                                                                  {
+                                                                                    attrs: {
+                                                                                      small:
+                                                                                        "",
+                                                                                      color:
+                                                                                        "green"
+                                                                                    }
+                                                                                  },
+                                                                                  [
+                                                                                    _vm._v(
+                                                                                      "mdi-check-bold"
+                                                                                    )
+                                                                                  ]
+                                                                                )
+                                                                              ],
+                                                                              1
+                                                                            )
+                                                                          ],
+                                                                          1
+                                                                        )
+                                                                      ]
+                                                                    }
+                                                                  }
+                                                                ],
+                                                                null,
+                                                                true
+                                                              )
+                                                            },
+                                                            [
+                                                              _vm._v(" "),
+                                                              _c("span", [
+                                                                _vm._v(
+                                                                  "Confirmer"
+                                                                )
+                                                              ])
+                                                            ]
+                                                          )
+                                                        ],
+                                                        1
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "v-col",
+                                                        [
+                                                          _c(
+                                                            "v-tooltip",
+                                                            {
+                                                              attrs: {
+                                                                bottom: ""
+                                                              },
+                                                              scopedSlots: _vm._u(
+                                                                [
+                                                                  {
+                                                                    key:
+                                                                      "activator",
+                                                                    fn: function(
+                                                                      ref
+                                                                    ) {
+                                                                      var on =
+                                                                        ref.on
+                                                                      var attrs =
+                                                                        ref.attrs
+                                                                      return [
+                                                                        _c(
+                                                                          "div",
+                                                                          _vm._g(
+                                                                            _vm._b(
+                                                                              {},
+                                                                              "div",
+                                                                              attrs,
+                                                                              false
+                                                                            ),
+                                                                            on
+                                                                          ),
+                                                                          [
+                                                                            _c(
+                                                                              "v-btn",
+                                                                              {
+                                                                                attrs: {
+                                                                                  icon:
+                                                                                    "",
+                                                                                  small:
+                                                                                    ""
+                                                                                },
+                                                                                on: {
+                                                                                  click: function(
+                                                                                    $event
+                                                                                  ) {
+                                                                                    return _vm.refuseStore(
+                                                                                      item.id
+                                                                                    )
+                                                                                  }
+                                                                                }
+                                                                              },
+                                                                              [
+                                                                                _c(
+                                                                                  "v-icon",
+                                                                                  {
+                                                                                    attrs: {
+                                                                                      small:
+                                                                                        "",
+                                                                                      color:
+                                                                                        "red"
+                                                                                    }
+                                                                                  },
+                                                                                  [
+                                                                                    _vm._v(
+                                                                                      "mdi-close-thick"
+                                                                                    )
+                                                                                  ]
+                                                                                )
+                                                                              ],
+                                                                              1
+                                                                            )
+                                                                          ],
+                                                                          1
+                                                                        )
+                                                                      ]
+                                                                    }
+                                                                  }
+                                                                ],
+                                                                null,
+                                                                true
+                                                              )
+                                                            },
+                                                            [
+                                                              _vm._v(" "),
+                                                              _c("span", [
+                                                                _vm._v(
+                                                                  "Annuler"
+                                                                )
+                                                              ])
+                                                            ]
+                                                          )
+                                                        ],
+                                                        1
                                                       )
                                                     ],
                                                     1

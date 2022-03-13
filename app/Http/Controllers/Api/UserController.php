@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Point;
+
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -15,7 +15,7 @@ class UserController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data' => User::where('type',0)->paginate(10),
+            'data' => User::where('type',0)->latest()->paginate(10),
         ]);
     }
     public function edit($id){
@@ -25,18 +25,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(Request $request,$id){
 
-        User::where('id',$id)->update([
-            'type' => 2,
-        ]);
-        Point::create([
-            'user_id' => $id,
-            'value' => 10000,
-        ]);
-        return response()->json(['success' => true]);
-
-    }
     public function usersCount()
     {
         return response()->json([

@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\{
     TransactionController,
     WalletController,
     StoreController,
+    PublicityController,
 };
 use \Illuminate\Support\Facades\Auth;
 use \Illuminate\Http\Request;
@@ -56,6 +57,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     //Stores
     Route::get('stores', [StoreController::class, 'getStores']);
     Route::post('stores/{store}', [StoreController::class, 'confirmStore']);
+    Route::post('storesDelete/{store}', [StoreController::class, 'deleteStore']);
+
+    //Ads
+    Route::get('ads', [PublicityController::class, 'getAds']);
+    Route::post('ads', [PublicityController::class, 'store']);
+
+
 
     //Statistic
     Route::get('TransactionsCountMonth', [TransactionController::class, 'getCountTransactionsMonth']);

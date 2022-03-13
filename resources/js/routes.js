@@ -96,6 +96,25 @@ const routes = [
             title: 'Stores'
         }
     },
+    //Ads
+    {
+        path: '/ads',
+        name: 'ads',
+        component: () =>
+            import ('./views/ads/indx'),
+        meta: {
+            title: 'Ads'
+        }
+    },
+    {
+        path: '/ads/create',
+        name: 'Ads Create',
+        component: () =>
+            import ('./views/ads/create'),
+        meta: {
+            title: 'Create'
+        }
+    },
 
 
 

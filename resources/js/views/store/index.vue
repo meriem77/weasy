@@ -38,59 +38,51 @@
                                         <td>{{ item.user.fullName }}</td>
 <!--                                        <td>{{ item.rc }}</td>-->
                                         <td>
-                                            <iframe  class="mt-2" height="95" width="95" @click="overlay = !overlay"
-                                                     :src="item.rc">
-                                            </iframe>
-                                            <v-overlay v-model="overlay" contained class="align-center justify-center">
-                                                <iframe  height="550" width="550" @click="overlay = false"
-                                                         :src="item.rc">
-                                                </iframe>
-<!--                                                <v-img-->
-<!--                                                    class="mt-2"-->
-<!--                                                    max-height="600"-->
-<!--                                                    max-width="600"-->
-<!--                                                    @click="overlay = false"-->
-<!--                                                    src="https://signepub.com/wp-content/uploads/2020/11/Banner-3.jpg"-->
-<!--                                                >-->
-<!--                                                    <template v-slot:placeholder>-->
-<!--                                                        <v-row class="fill-height ma-0" align="center" justify="center">-->
-<!--                                                            <v-progress-circular-->
-<!--                                                                indeterminate-->
-<!--                                                                color="primary"-->
-<!--                                                            ></v-progress-circular>-->
-<!--                                                        </v-row>-->
-<!--                                                    </template>-->
-
-<!--                                                </v-img>-->
-
-                                            </v-overlay>
-
+                                            <v-btn icon small @click="handleClick(item.rc)">
+                                                <v-icon small>mdi-eye</v-icon>
+                                            </v-btn>
                                         </td>
                                         <td>
-                                            <iframe  class="mt-2" height="95" width="95" @click="overlay = !overlay"
-                                                     :src="item.nif">
-                                            </iframe>
-                                            <v-overlay v-model="overlay" contained class="align-center justify-center">
-                                                <iframe  height="550" width="550" @click="overlay = false"
-                                                         :src="item.nif">
-                                                </iframe>
-                                            </v-overlay>
+                                            <v-btn icon small @click="handleClick(item.nif)">
+                                                <v-icon small>mdi-eye</v-icon>
+                                            </v-btn>
                                         </td>
                                         <td>
-                                            <iframe  class="mt-2" height="95" width="95" @click="overlay = !overlay"
-                                                     :src="item.agremen">
-                                            </iframe>
-                                            <v-overlay v-model="overlay" contained class="align-center justify-center">
-                                                <iframe  height="550" width="550" @click="overlay = false"
-                                                         :src="item.agremen">
-                                                </iframe>
-                                            </v-overlay>
+                                            <v-btn icon small @click="handleClick(item.agremen)">
+                                                <v-icon small>mdi-eye</v-icon>
+                                            </v-btn>
                                         </td>
                                         <td>{{ item.category.name }}</td>
                                         <td>
-                                            <v-btn icon small @click="ConfirmStore(item.id)">
-                                                <v-icon small>mdi-check</v-icon>
-                                            </v-btn>
+                                            <v-row>
+                                                <v-col lg="2">
+                                                    <v-tooltip bottom>
+                                                        <template v-slot:activator="{ on, attrs }">
+                                                            <div  v-bind="attrs"
+                                                                  v-on="on">
+                                                                <v-btn icon small @click="ConfirmStore(item.id)">
+                                                                    <v-icon small color="green">mdi-check-bold</v-icon>
+                                                                </v-btn>
+                                                            </div>
+                                                        </template>
+                                                        <span>Confirmer</span>
+                                                    </v-tooltip>
+                                                </v-col>
+                                                <v-col>
+                                                    <v-tooltip bottom>
+                                                        <template v-slot:activator="{ on, attrs }">
+                                                            <div  v-bind="attrs"
+                                                                  v-on="on">
+                                                                <v-btn icon small @click="refuseStore(item.id)">
+                                                                    <v-icon small color="red">mdi-close-thick</v-icon>
+                                                                </v-btn>
+                                                            </div>
+                                                        </template>
+                                                        <span>Annuler</span>
+                                                    </v-tooltip>
+                                                </v-col>
+                                            </v-row>
+
                                         </td>
                                     </tr>
                                     </tbody>
@@ -138,6 +130,30 @@ export default {
         }
     },
     methods: {
+        handleClick(item) {
+            window.open(item, '_blank') //to open in new tab
+        },
+        refuseStore(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#272727',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.post('/storesDelete/' + id).then(() => {
+                        this.getStores()
+
+                    }).catch(err => {
+                        console.log(err)
+                        this.loading = false
+                    })
+                }
+            })
+        },
         ConfirmStore(id) {
             Swal.fire({
                 title: 'Are you sure?',

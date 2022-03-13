@@ -2153,12 +2153,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       overlay: false,
       mini: true,
-      APP_NAME: "Weasy"
+      APP_NAME: "Dashboard"
     };
   },
   methods: {
@@ -2492,6 +2524,25 @@ var routes = [//login
   meta: {
     title: 'Stores'
   }
+}, //Ads
+{
+  path: '/ads',
+  name: 'ads',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_views_ads_indx_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/ads/indx */ "./resources/js/views/ads/indx.vue"));
+  },
+  meta: {
+    title: 'Ads'
+  }
+}, {
+  path: '/ads/create',
+  name: 'Ads Create',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_views_ads_create_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/ads/create */ "./resources/js/views/ads/create.vue"));
+  },
+  meta: {
+    title: 'Create'
+  }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__.default({
   mode: 'history',
@@ -2511,7 +2562,7 @@ router.beforeEach(function (to, from, next) {
   }
 });
 router.beforeEach(function (to, from, next) {
-  document.title = "Weasy" + ' | ' + to.meta.title;
+  document.title = "Dashboard" + ' | ' + to.meta.title;
   next();
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
@@ -4444,16 +4495,39 @@ var render = function() {
               attrs: { to: "/transactions" }
             },
             [
-              _c("div", [
-                _c("img", {
-                  attrs: {
-                    src: "/images/partners.svg",
-                    height: "30",
-                    width: "30"
-                  }
-                })
-              ])
-            ]
+              _c(
+                "v-tooltip",
+                {
+                  attrs: { bottom: "" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function(ref) {
+                        var on = ref.on
+                        var attrs = ref.attrs
+                        return [
+                          _c(
+                            "div",
+                            _vm._g(_vm._b({}, "div", attrs, false), on),
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: "/images/partners.svg",
+                                  height: "30",
+                                  width: "30"
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                },
+                [_vm._v(" "), _c("span", [_vm._v("Partners")])]
+              )
+            ],
+            1
           ),
           _vm._v(" "),
           _c(
@@ -4464,16 +4538,39 @@ var render = function() {
               attrs: { to: "/users" }
             },
             [
-              _c("div", [
-                _c("img", {
-                  attrs: {
-                    src: "/images/people.svg",
-                    height: "30",
-                    width: "30"
-                  }
-                })
-              ])
-            ]
+              _c(
+                "v-tooltip",
+                {
+                  attrs: { bottom: "" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function(ref) {
+                        var on = ref.on
+                        var attrs = ref.attrs
+                        return [
+                          _c(
+                            "div",
+                            _vm._g(_vm._b({}, "div", attrs, false), on),
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: "/images/people.svg",
+                                  height: "30",
+                                  width: "30"
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                },
+                [_vm._v(" "), _c("span", [_vm._v("Users")])]
+              )
+            ],
+            1
           ),
           _vm._v(" "),
           _c(
@@ -4484,16 +4581,39 @@ var render = function() {
               attrs: { to: "/traders" }
             },
             [
-              _c("div", [
-                _c("img", {
-                  attrs: {
-                    src: "/images/Ecommerce.svg",
-                    height: "30",
-                    width: "30"
-                  }
-                })
-              ])
-            ]
+              _c(
+                "v-tooltip",
+                {
+                  attrs: { bottom: "" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function(ref) {
+                        var on = ref.on
+                        var attrs = ref.attrs
+                        return [
+                          _c(
+                            "div",
+                            _vm._g(_vm._b({}, "div", attrs, false), on),
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: "/images/Ecommerce.svg",
+                                  height: "30",
+                                  width: "30"
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                },
+                [_vm._v(" "), _c("span", [_vm._v("Ecommerce")])]
+              )
+            ],
+            1
           ),
           _vm._v(" "),
           _c(
@@ -4504,12 +4624,82 @@ var render = function() {
               attrs: { to: "/stores" }
             },
             [
-              _c("div", [
-                _c("img", {
-                  attrs: { src: "/images/store.png", height: "30", width: "30" }
-                })
-              ])
-            ]
+              _c(
+                "v-tooltip",
+                {
+                  attrs: { bottom: "" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function(ref) {
+                        var on = ref.on
+                        var attrs = ref.attrs
+                        return [
+                          _c(
+                            "div",
+                            _vm._g(_vm._b({}, "div", attrs, false), on),
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: "/images/store.png",
+                                  height: "30",
+                                  width: "30"
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                },
+                [_vm._v(" "), _c("span", [_vm._v("Stores")])]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-item",
+            {
+              staticClass: "mt-5",
+              staticStyle: { "margin-left": "-3px" },
+              attrs: { to: "/ads" }
+            },
+            [
+              _c(
+                "v-tooltip",
+                {
+                  attrs: { bottom: "" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function(ref) {
+                        var on = ref.on
+                        var attrs = ref.attrs
+                        return [
+                          _c(
+                            "div",
+                            _vm._g(_vm._b({}, "div", attrs, false), on),
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: "/images/ads.png",
+                                  height: "30",
+                                  width: "30"
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                },
+                [_vm._v(" "), _c("span", [_vm._v("Ads")])]
+              )
+            ],
+            1
           )
         ],
         1
@@ -66895,7 +67085,7 @@ module.exports = JSON.parse('{"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBu
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_auth_login_vue":1,"resources_js_views_home_index_vue":1,"resources_js_views_notFound_vue":1,"resources_js_views_transactions_index_vue":1,"resources_js_views_partners_index_vue":1,"resources_js_views_partners_userList_vue":1,"resources_js_views_users_index_vue":1,"resources_js_views_traders_index_vue":1,"resources_js_views_store_index_vue":1}[chunkId]) return "dist/js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_auth_login_vue":1,"resources_js_views_home_index_vue":1,"resources_js_views_notFound_vue":1,"resources_js_views_transactions_index_vue":1,"resources_js_views_partners_index_vue":1,"resources_js_views_partners_userList_vue":1,"resources_js_views_users_index_vue":1,"resources_js_views_traders_index_vue":1,"resources_js_views_store_index_vue":1,"resources_js_views_ads_indx_vue":1,"resources_js_views_ads_create_vue":1}[chunkId]) return "dist/js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

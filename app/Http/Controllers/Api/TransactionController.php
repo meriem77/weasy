@@ -57,7 +57,7 @@ class TransactionController extends Controller
                 ->with('receiver:id,fullName,type')
                 ->whereHas('sender', function ($query) {
                     return $query->where('type', '=', User::PARTNER_TYPE);
-                })->paginate(10),
+                })->latest()->paginate(10),
         ]);
 
     }
@@ -74,6 +74,7 @@ class TransactionController extends Controller
                 })->whereHas('receiver', function ($query) {
                     return $query->where('type', '=', 1);
                 })
+                ->latest()
                 ->paginate(10),
         ]);
 
@@ -107,6 +108,7 @@ class TransactionController extends Controller
                 })->whereHas('receiver', function ($query) {
                     return $query->where('type', '=', User::TRADER_TYPE);
                 })
+                ->latest()
                 ->paginate(10),
         ]);
 

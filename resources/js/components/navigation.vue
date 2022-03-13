@@ -6,31 +6,63 @@
                     <img src="/images/logo.png" height="90" width="90">
                 </div>
             </v-list-item>
-<!--            <v-list-item to="/admins" class="mt-15" style="margin-left: -3px">-->
-<!--                <div>-->
-<!--                    <img src="/images/Union 3.svg" height="30" width="30">-->
-<!--                </div>-->
-<!--            </v-list-item>-->
             <v-list-item to="/transactions" class="mt-5" style="margin-left: -3px">
-                <div>
-                    <img src="/images/partners.svg" height="30" width="30">
-                </div>
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on, attrs }">
+                        <div  v-bind="attrs"
+                              v-on="on">
+                            <img src="/images/partners.svg" height="30" width="30">
+                        </div>
+                    </template>
+                    <span>Partners</span>
+                </v-tooltip>
             </v-list-item>
             <v-list-item to="/users" class="mt-5" style="margin-left: -3px">
-                <div>
-                    <img src="/images/people.svg" height="30" width="30">
-                </div>
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on, attrs }">
+                        <div  v-bind="attrs"
+                              v-on="on">
+                            <img src="/images/people.svg" height="30" width="30">
+                        </div>
+                    </template>
+                    <span>Users</span>
+                </v-tooltip>
             </v-list-item>
             <v-list-item to="/traders" class="mt-5" style="margin-left: -3px">
-                <div>
-                    <img src="/images/Ecommerce.svg" height="30" width="30">
-                </div>
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on, attrs }">
+                        <div  v-bind="attrs"
+                              v-on="on">
+                            <img src="/images/Ecommerce.svg" height="30" width="30">
+                        </div>
+                    </template>
+                    <span>Ecommerce</span>
+                </v-tooltip>
             </v-list-item>
             <v-list-item to="/stores" class="mt-5" style="margin-left: -3px">
-                <div>
-                    <img src="/images/store.png" height="30" width="30">
-                </div>
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on, attrs }">
+                        <div  v-bind="attrs"
+                              v-on="on">
+                            <img src="/images/store.png" height="30" width="30">
+                        </div>
+                    </template>
+                    <span>Stores</span>
+                </v-tooltip>
             </v-list-item>
+            <v-list-item to="/ads" class="mt-5" style="margin-left: -3px">
+                <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                    <div  v-bind="attrs"
+                          v-on="on">
+                        <img src="/images/ads.png" height="30" width="30">
+                    </div>
+                </template>
+                <span>Ads</span>
+                </v-tooltip>
+            </v-list-item>
+
+
 
         </v-navigation-drawer>
         <v-overlay :value="overlay" opacity="1" color="white">

@@ -130,7 +130,7 @@ class WalletController extends Controller
         ]);
 
         $balence=Wallet::Where('user_id',auth()->user()->id)->first();
-        if ($balence->balence==0){
+        if ($balence->balence<2000){
 
             $transaction = new Transaction();
             $transaction->amount = $request->value;
