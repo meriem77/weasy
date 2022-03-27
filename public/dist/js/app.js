@@ -2185,6 +2185,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2542,6 +2553,16 @@ var routes = [//login
   },
   meta: {
     title: 'Create'
+  }
+}, //Companies
+{
+  path: '/company',
+  name: 'companies',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_views_company_index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/company/index */ "./resources/js/views/company/index.vue"));
+  },
+  meta: {
+    title: 'Companies'
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__.default({
@@ -4697,6 +4718,49 @@ var render = function() {
                   ])
                 },
                 [_vm._v(" "), _c("span", [_vm._v("Ads")])]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-item",
+            {
+              staticClass: "mt-5",
+              staticStyle: { "margin-left": "-3px" },
+              attrs: { to: "/company" }
+            },
+            [
+              _c(
+                "v-tooltip",
+                {
+                  attrs: { bottom: "" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function(ref) {
+                        var on = ref.on
+                        var attrs = ref.attrs
+                        return [
+                          _c(
+                            "div",
+                            _vm._g(_vm._b({}, "div", attrs, false), on),
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: "/images/compagnie.png",
+                                  height: "30",
+                                  width: "30"
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                },
+                [_vm._v(" "), _c("span", [_vm._v("Companies")])]
               )
             ],
             1
@@ -67085,7 +67149,7 @@ module.exports = JSON.parse('{"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBu
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_auth_login_vue":1,"resources_js_views_home_index_vue":1,"resources_js_views_notFound_vue":1,"resources_js_views_transactions_index_vue":1,"resources_js_views_partners_index_vue":1,"resources_js_views_partners_userList_vue":1,"resources_js_views_users_index_vue":1,"resources_js_views_traders_index_vue":1,"resources_js_views_store_index_vue":1,"resources_js_views_ads_indx_vue":1,"resources_js_views_ads_create_vue":1}[chunkId]) return "dist/js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_auth_login_vue":1,"resources_js_views_home_index_vue":1,"resources_js_views_notFound_vue":1,"resources_js_views_transactions_index_vue":1,"resources_js_views_partners_index_vue":1,"resources_js_views_partners_userList_vue":1,"resources_js_views_users_index_vue":1,"resources_js_views_traders_index_vue":1,"resources_js_views_store_index_vue":1,"resources_js_views_ads_indx_vue":1,"resources_js_views_ads_create_vue":1,"resources_js_views_company_index_vue":1}[chunkId]) return "dist/js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

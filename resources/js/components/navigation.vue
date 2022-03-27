@@ -61,6 +61,17 @@
                 <span>Ads</span>
                 </v-tooltip>
             </v-list-item>
+            <v-list-item to="/company" class="mt-5" style="margin-left: -3px">
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on, attrs }">
+                        <div  v-bind="attrs"
+                              v-on="on">
+                            <img src="/images/compagnie.png" height="30" width="30">
+                        </div>
+                    </template>
+                    <span>Companies</span>
+                </v-tooltip>
+            </v-list-item>
 
 
 

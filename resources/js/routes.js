@@ -115,6 +115,16 @@ const routes = [
             title: 'Create'
         }
     },
+    //Companies
+    {
+        path: '/company',
+        name: 'companies',
+        component: () =>
+            import ('./views/company/index'),
+        meta: {
+            title: 'Companies'
+        }
+    },
 
 
 

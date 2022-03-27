@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\{
     WalletController,
     StoreController,
     PublicityController,
+    CompanyController,
 };
 use \Illuminate\Support\Facades\Auth;
 use \Illuminate\Http\Request;
@@ -63,6 +64,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('ads', [PublicityController::class, 'getAds']);
     Route::post('ads', [PublicityController::class, 'store']);
 
+    //Companies
+    Route::get('companies', [CompanyController::class, 'getCompanies']);
+    Route::post('companies/{companie}', [CompanyController::class, 'confirmCompany']);
+    Route::post('companiesDelete/{company}', [CompanyController::class, 'deleteCompany']);
 
 
     //Statistic
